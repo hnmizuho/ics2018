@@ -7,7 +7,7 @@
     guest_to_host(addr); \
     })
 
-uint8_t pmem[PMEM_SIZE];
+uint8_t pmem[PMEM_SIZE];//8b*128*1024*1024 = 128MB
 
 /* Memory accessing interfaces */
 
