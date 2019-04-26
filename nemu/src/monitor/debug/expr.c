@@ -130,6 +130,7 @@ bool check_parentheses(int p,int q){
                 return false;
             }
         }
+        count = count -1; //最后一个右括号
         if(count !=0) //总和应该为0
         {
             printf("Bad parentheses\n");
