@@ -77,7 +77,7 @@ static bool make_token(char *e) {
 
   while (e[position] != '\0') {
     /* Try all rules one by one. */
-    for (i = 0; i < NR_REGEX; i ++) {;
+    for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
@@ -90,8 +90,8 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-       // if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
-            printf("%d\n",rules[i].token_type);
+        if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
+            break;
         if(substr_len>31)  //str溢出 false报错
             assert(0);
         memset(tokens[nr_token].str,'\0',32); //以防万一
@@ -216,8 +216,8 @@ uint32_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();  //什么鬼
   //
- // printf("RESULT=%d\n",eval(0, nr_token-1));
- // return eval(0, nr_token-1);
+  *success = true;
+  return eval(0, nr_token-1);
 
   return 0;
 }
