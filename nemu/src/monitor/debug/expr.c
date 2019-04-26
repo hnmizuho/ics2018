@@ -126,7 +126,7 @@ bool check_parentheses(int p,int q){
                 count = count - 1;
             if(count == 0)
             {
-                printf("Leftmost and rightmost are not matched\n");
+                //printf("Leftmost and rightmost are not matched\n");
                 return false;
             }
         }
