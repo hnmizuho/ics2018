@@ -160,13 +160,14 @@ static int cmd_x(char *args) {
 
 static int cmd_p(char *args) {
     bool *success=false;
-    // char *arg = strtok(NULL, " ");
-    /*if(args == NULL)
+    // char *arg = strtok(NULL, " "); //参数只有一个，这个参数里可能有空格
+    if(args == NULL)
     {
         printf("Lack of parameter!\n");
         return 0;
-    }*/
-    expr(args,success);
+    }
+    uint32_t res =  expr(args,success);
+    printf("%d\n",res);
     return 0;
 }
 void ui_mainloop(int is_batch_mode) {
