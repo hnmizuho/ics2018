@@ -170,6 +170,7 @@ uint32_t eval(int p,int q){
         return eval(p+1,q-1);
     }
     else{
+        return 0;
         int op=0;
         char op_type='\0';
         bool left = false;//出现左括号的flag
