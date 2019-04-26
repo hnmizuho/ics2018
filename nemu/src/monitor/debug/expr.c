@@ -91,7 +91,7 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
        // if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
-            printf("%d",rules[i].token_type);
+            printf("%d\n",rules[i].token_type);
         if(substr_len>31)  //str溢出 false报错
             assert(0);
         memset(tokens[nr_token].str,'\0',32); //以防万一
