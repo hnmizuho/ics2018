@@ -6,7 +6,7 @@
 #include <sys/types.h>
 #include <regex.h>
 
-enum {
+enum {  //从256开始,为了避开ascii
   TK_NOTYPE = 256, TK_HEX, TK_DEC, TK_REG, TK_EQ, TK_NEQ
 
   /* TODO: Add more token types */
@@ -83,13 +83,20 @@ static bool make_token(char *e) {
         int substr_len = pmatch.rm_eo;
 
         Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-            i, rules[i].regex, position, substr_len, substr_len, substr_start);
+            i, rules[i].regex, position, substr_len, substr_len, substr_start);  //%.*s两个参数宽度+串，指定宽度 强制输出
         position += substr_len;
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
+        strncpy(tokens[nr_token].str, substr_start, substr_len);// 类似上面的%.*s
+        if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
+            break;
+        tokens[nr_token].type = rules[i].token_type;
+        Log("Save in type=%d, str=%s",tokens[nr_token].type,tokens[nr_token].str);
+        nr_token = nr_token + 1;
+
         break;
       }
     }
