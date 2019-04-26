@@ -62,7 +62,7 @@ void init_regex() {
 
 typedef struct token {
   int type;
-  char str[32];
+  char str[32];  
 } Token;
 
 Token tokens[32];
@@ -90,6 +90,8 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
+        if(substr_len>31)  //str溢出
+            assert(0);
         strncpy(tokens[nr_token].str, substr_start, substr_len);// 类似上面的%.*s
         if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
             break;
