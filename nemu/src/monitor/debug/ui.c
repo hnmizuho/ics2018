@@ -172,7 +172,6 @@ static int cmd_p(char *args) {
     else
         printf("%d\n",res);
     return 0;
-
 }
 void ui_mainloop(int is_batch_mode) {
   if (is_batch_mode) {
