@@ -134,7 +134,7 @@ bool check_parentheses(int p,int q){
         if(count !=0) //总和应该为0
         {
             printf("Bad parentheses\n");
-            return false;
+            assert(0);
         }
         return true;
     }
@@ -147,7 +147,7 @@ bool check_parentheses(int p,int q){
 uint32_t eval(int p,int q){
     if(p>q){        
         printf("Bad expression\n");
-        return 0;
+        assert(0);
     }
     else if(p==q){
         if(tokens[p].type == TK_HEX){
@@ -163,7 +163,7 @@ uint32_t eval(int p,int q){
         }
         else{
             printf("Bad expression\n");
-            return 0;
+            assert(0);
         }
     }
     else if(check_parentheses(p,q) == true){
