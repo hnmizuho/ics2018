@@ -1,5 +1,6 @@
-STU_ID = 1410576
-
+STU_ID = 1611276
+# 可恶直到看了原版PA教程才知道一直没配置git用户
+# 现在开始跟踪测试
 # DO NOT modify the following code!!!
 
 GITFLAGS = -q --author='tracer-ics2017 <tracer@njuics.org>' --no-verify --allow-empty
