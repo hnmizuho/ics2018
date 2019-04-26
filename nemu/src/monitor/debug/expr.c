@@ -118,7 +118,7 @@ bool check_parentheses(int p,int q){
         //左括号记为1 右括号记为-1 
         //总和应该为0 且遍历完之前总和一定不为0，以确保最左和最右匹配
         int count = 0;
-        for(int i=0;i<q-p;i++) //前n-1个数总和应不为0
+        for(int i=p;i<q;i++) //前n-1个数总和应不为0
         {
             if(tokens[i].str[0] == '(')
                 count = count + 1;
@@ -170,12 +170,11 @@ uint32_t eval(int p,int q){
         return eval(p+1,q-1);
     }
     else{
-        return 0;
         int op=0;
         char op_type='\0';
         bool left = false;//出现左括号的flag
         int curr_prev = 3;//当前存的符号优先级
-        for(int i=0;i<=q-p;i++){
+        for(int i=p;i<=q;i++){  //此处为p～q而不是0～q-p
             if(tokens[i].str[0]==')')
             {
                 left = false;
