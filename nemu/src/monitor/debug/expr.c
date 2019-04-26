@@ -82,8 +82,8 @@ static bool make_token(char *e) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
-        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-            i, rules[i].regex, position, substr_len, substr_len, substr_start);  //%.*s两个参数宽度+串，指定宽度 强制输出
+        //Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+        //    i, rules[i].regex, position, substr_len, substr_len, substr_start);  //%.*s两个参数宽度+串，指定宽度 强制输出
         position += substr_len;
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
@@ -126,7 +126,7 @@ bool check_parentheses(int p,int q){
                 count = count - 1;
             if(count == 0)
             {
-                printf("Leftmost and rightmost are not matched\n");
+                // printf("Leftmost and rightmost are not matched\n");
                 return false;
             }
         }
@@ -216,6 +216,8 @@ uint32_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();  //什么鬼
   //
-  *success = true;
-  return eval(0, nr_token-1);
+  printf("RESULT=%d\n",eval(0, nr_token-1));
+ // return eval(0, nr_token-1);
+
+  return 0;
 }
