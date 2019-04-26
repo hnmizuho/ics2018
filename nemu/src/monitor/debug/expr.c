@@ -90,13 +90,13 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-       // if(substr_len>31)  //str溢出
-         //   assert(0);
+        if(substr_len>31)  //str溢出 false报错
+            assert(0);
         strncpy(tokens[nr_token].str, substr_start, substr_len);// 类似上面的%.*s
         if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
             break;
         tokens[nr_token].type = rules[i].token_type;
-        Log("Save in type=%d, str=%s",tokens[nr_token].type,tokens[nr_token].str);
+        Log("Save in type=%d, str=%s,nrtoken=%d",tokens[nr_token].type,tokens[nr_token].str,nr_token);
         nr_token = nr_token + 1;
 
         break;
