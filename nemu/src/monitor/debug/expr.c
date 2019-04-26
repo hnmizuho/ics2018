@@ -98,7 +98,7 @@ static bool make_token(char *e) {
         strncpy(tokens[nr_token].str, substr_start, substr_len);// 类似上面的%.*s
 
         tokens[nr_token].type = rules[i].token_type;
-        Log("Save in type=%d, str=%s",tokens[nr_token].type,tokens[nr_token].str);
+        // Log("Save in type=%d, str=%s",tokens[nr_token].type,tokens[nr_token].str);
         nr_token = nr_token + 1;
 
         break;
@@ -126,7 +126,7 @@ bool check_parentheses(int p,int q){
                 count = count - 1;
             if(count == 0)
             {
-                // printf("Leftmost and rightmost are not matched\n");
+                printf("Leftmost and rightmost are not matched\n");
                 return false;
             }
         }
@@ -212,12 +212,10 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-
+  *success = true;
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();  //什么鬼
   //
-  printf("RESULT=%d\n",eval(0, nr_token-1));
- // return eval(0, nr_token-1);
-
-  return 0;
+  //printf("RESULT=%d\n",eval(0, nr_token-1));
+  return eval(0, nr_token-1);
 }
