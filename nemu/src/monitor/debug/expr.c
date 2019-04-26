@@ -90,7 +90,7 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-        if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
+       // if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
             printf("%d",rules[i].token_type);
         if(substr_len>31)  //str溢出 false报错
             assert(0);
