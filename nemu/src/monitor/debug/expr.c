@@ -94,6 +94,7 @@ static bool make_token(char *e) {
             assert(0);
         memset(tokens[nr_token].str,'\0',32); //以防万一
         strncpy(tokens[nr_token].str, substr_start, substr_len);// 类似上面的%.*s
+
         if(rules[i].token_type == TK_NOTYPE) //空格直接舍弃
             break;
         tokens[nr_token].type = rules[i].token_type;
@@ -112,7 +113,99 @@ static bool make_token(char *e) {
 
   return true;
 }
+bool check_parentheses(int p,int q){
+    if((tokens[p].str[0]=='(') && (tokens[q].str[0]==')')){
+        //左括号记为1 右括号记为-1 
+        //总和应该为0 且遍历完之前总和一定不为0，以确保最左和最右匹配
+        int count = 0;
+        for(int i=0;i<q-p;i++) //前n-1个数总和应不为0
+        {
+            if(tokens[i].str[0] == '(')
+                count = count + 1;
+            if(tokens[i].str[0] == ')')
+                count = count - 1;
+            if(count == 0)
+            {
+                printf("Leftmost and rightmost are not matched\n");
+                return false;
+            }
+        }
+        if(count !=0) //总和应该为0
+        {
+            printf("Bad parentheses\n");
+            return false;
+        }
+        return true;
+    }
+    else
+    {
+        printf("The whole expr was not surrounded\n");
+        return false;
+    }
+}
+uint32_t eval(int p,int q){
+    if(p>q){        
+        printf("Bad expression\n");
+        return 0;
+    }
+    else if(p==q){
+        if(tokens[p].type == TK_HEX){
+            uint32_t res;
+            sscanf(tokens[p].str,"%x",&res);
+            return res;
+        }
+        else if(tokens[p].type == TK_DEC)
+        {
+            uint32_t res;
+            sscanf(tokens[p].str,"%d",&res);
+            return res;
+        }
+        else{
+            printf("Bad expression\n");
+            return 0;
+        }
+    }
+    else if(check_parentheses(p,q) == true){
+        return eval(p+1,q-1);
+    }
+    else{
+        int op=0;
+        char op_type='\0';
+        bool left = false;//出现左括号的flag
+        int curr_prev = 3;//当前存的符号优先级
+        for(int i=0;i<=q-p;i++){
+            if(tokens[i].str[0]==')')
+            {
+                left = false;
+                continue;
+            }
+            if(left)
+                continue;
+            if(tokens[i].str[0]=='(')
+            {
+                left = true;
+                continue;
+            }
+            switch(tokens[i].str[0]){
+                case '+':if(curr_prev>=1){curr_prev=1;op=i;op_type='+';continue;}
+                case '-':if(curr_prev>=1){curr_prev=1;op=i;op_type='-';continue;}
+                case '*':if(curr_prev>=2){curr_prev=2;op=i;op_type='*';continue;}
+                case '/':if(curr_prev>=2){curr_prev=2;op=i;op_type='/';continue;}
+                default:continue;
+            }
+        }
 
+        uint32_t val1 = eval(p,op-1);
+        uint32_t val2 = eval(op+1,q);
+        switch(op_type){
+            case '+':return val1+val2;
+            case '-':return val1-val2;
+            case '*':return val1*val2;
+            case '/':return val1/val2;
+            default:assert(0);
+        }
+    }
+}
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -121,6 +214,9 @@ uint32_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();  //什么鬼
+  //
+  printf("RESULT=%d\n",eval(0, nr_token-1));
+ // return eval(0, nr_token-1);
 
   return 0;
 }
