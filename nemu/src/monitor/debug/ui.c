@@ -160,8 +160,8 @@ static int cmd_x(char *args) {
 
 static int cmd_p(char *args) {
      bool *success=false;
-    // char *arg = strtok(NULL, " "); //参数只有1个
-    if(args == NULL)
+    char *arg = strtok(NULL, " "); //参数只有1个
+    if(arg == NULL)
     {
         printf("Lack of parameter!\n");
         return 0;
