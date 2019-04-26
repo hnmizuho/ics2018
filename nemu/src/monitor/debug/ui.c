@@ -161,11 +161,11 @@ static int cmd_x(char *args) {
 static int cmd_p(char *args) {
     bool *success=false;
     // char *arg = strtok(NULL, " ");
-    if(args == NULL)
+    /*if(args == NULL)
     {
         printf("Lack of parameter!\n");
         return 0;
-    }
+    }*/
     expr(args,success);
     return 0;
 }
