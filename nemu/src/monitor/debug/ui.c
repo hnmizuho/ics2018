@@ -159,20 +159,20 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_p(char *args) {
-   // bool *success=false;
+     bool *success=false;
     // char *arg = strtok(NULL, " "); //参数只有1个
     if(args == NULL)
     {
         printf("Lack of parameter!\n");
         return 0;
-    }printf("%s",args);
-    /*
+    }
+    
     uint32_t res = expr(args,success);
     if(*success == false)
         printf("Lexical analysis error");
     else
         printf("%d\n",res);
-        */
+        
     return 0;
 }
 void ui_mainloop(int is_batch_mode) {
