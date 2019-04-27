@@ -78,3 +78,15 @@ void show_wp(){
         tmp = tmp->next;
     }
 }
+bool check_wp(){  //监视点里某个变动了，返回true
+    WP *tmp = head;
+    while(tmp!=NULL)
+    {
+        bool *success = false;
+        uint32_t new_res = expr(tmp->eexpr,success);
+        if(new_res == tmp->init)
+            return true;
+        tmp = tmp->next;
+    }
+    return false;
+}
