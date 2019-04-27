@@ -71,10 +71,11 @@ void free_wp(int N){
     free_ = wp;
 }
 void show_wp(){
+    printf("Num\tWhat");
     WP *tmp = head;
     while(tmp!=NULL)
     {
-        printf("NO:%d\n",tmp->NO);
+        printf("%d\t%s",tmp->NO,tmp->eexpr);
         tmp = tmp->next;
     }
 }
@@ -87,7 +88,7 @@ bool check_wp(){  //监视点里某个变动了，返回true
         if(new_val != tmp->init)
         {
             printf("Watchpoint %d: %s\n",tmp->NO,tmp->eexpr);
-            printf("Old value = %08x\nNew value = %08x\n",tmp->init,new_val);
+            printf("Old value = 0x%08x\nNew value = 0x%08x\n",tmp->init,new_val);
             tmp->init = new_val;//赋上新值
             return true;
         }
