@@ -174,9 +174,9 @@ uint32_t eval(int p,int q){
             for(int i=0;i<8;i++)
                 if(!strcmp(tokens[p].str,regsl[i])){printf("%08x\n",cpu.gpr[i]._32);return cpu.gpr[i]._32;}
             for(int i=0;i<8;i++)
-                if(!strcmp(tokens[p].str,regsw[i]))return cpu.gpr[i]._16;
+                if(!strcmp(tokens[p].str,regsw[i])){printf("%08x\n",cpu.gpr[i]._16);return cpu.gpr[i]._16;}
             for(int i=0;i<8;i++) 
-                if(!strcmp(tokens[p].str,regsb[i]))return cpu.gpr[i%4]._8[i/4];
+                if(!strcmp(tokens[p].str,regsb[i])){printf("%08x\n",cpu.gpr[i%4]._8[i/4]);return cpu.gpr[i%4]._8[i/4];}
         }
         else assert(0);
         return res;
