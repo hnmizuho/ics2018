@@ -116,8 +116,10 @@ static int cmd_info(char *args) {
                     for(j=0;j<8;j++) 
                         printf("%s\t\t0x%02x\n",regsb[j],cpu.gpr[j%4]._8[j/4]);
                 }
-                else if(i == 1)
-                    printf("w");
+                else if(i == 1) //w
+                {
+                    show_wp();
+                }
                 return 0;
             }
         printf("Unknown command '%s'\n", arg);
@@ -195,7 +197,7 @@ static int cmd_d(char *args) {
     int N;
     sscanf(args,"%d",&N);
     free_wp(N);
-    printf("Free watchpoint %d",N);
+    printf("Free watchpoint %d\n",N);
     return 0;
 }
 void ui_mainloop(int is_batch_mode) {
