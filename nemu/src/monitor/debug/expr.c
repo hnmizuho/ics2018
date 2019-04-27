@@ -205,7 +205,7 @@ uint32_t eval(int p,int q){
         int op=0;
         int op_type=0;
         bool left = false;//出现左括号的flag
-        int curr_prev = 3;//当前存的符号优先级
+        int curr_prev = 10;//当前存的符号优先级
         for(int i=p;i<=q;i++){  //此处为p～q而不是0～q-p
             if(tokens[i].str[0]==')')
             {
