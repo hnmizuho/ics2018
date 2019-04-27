@@ -183,6 +183,8 @@ uint32_t eval(int p,int q){
 
          if(tokens[p].type == '!')
            return !res;
+         else if(tokens[p].type == '-')
+             return -1*res;
          else
              assert(0);
     }
