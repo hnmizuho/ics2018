@@ -42,18 +42,23 @@ WP* new_wp(){
 }
 void free_wp(int N){
     WP *wp=head;
-    while(wp->next!=NULL)
+    while(wp!=NULL)
     {
         if(wp->NO == N)
             break;
         wp = wp->next;
+    }
+    if(wp == NULL)
+    {
+        printf("fail to"); //fail to free wp
+        return;
     }
     if(head == wp)
         head = head->next;
     else
     {
         WP* tmp = head;
-        while(tmp->next!=NULL)
+        while(tmp!=NULL)
         {
             if(tmp->next == wp){
                 tmp->next = wp->next;
@@ -71,7 +76,7 @@ void free_wp(int N){
     else
     {
         WP *tmp1 = free_;
-        while(tmp1->next!=NULL){
+        while(tmp1!=NULL){
             if(tmp1->next->NO>wp->NO)
             {
                 wp->next = tmp1->next;
