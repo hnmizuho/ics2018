@@ -165,43 +165,12 @@ uint32_t eval(int p,int q){
         // printf("Bad expression\n");
         return 0;
     }
-   /* if(tokens[p].type == '-') //负号的判断 当其为第一个符号，或左边为(时
-    {
-        if((p==0)||(tokens[p-1].type == '('))
-        {
-            p=p+1;
-            if(p>q)assert(0);
-            if(tokens[p].type == TK_DEC)tokens[p].type=TK_NEG; //根据常识右边应是10进制数，记为负数
-            else assert(0);
-        }
-    }*/
-    /*
-    if(p==q-1){   //双目运算符! *的情况
-         uint32_t res;
-         if(tokens[q].type==TK_HEX) sscanf(tokens[q].str,"%x",&res);
-         else if(tokens[q].type==TK_DEC) sscanf(tokens[q].str,"%d",&res);
-         else assert(0);
-
-         if(tokens[p].type == '!')
-           return !res;
-         else if(tokens[p].type == TK_NEG)
-             return -1*res;
-         else
-             assert(0);
-    }*/
     else if(p==q){
         uint32_t res;
         if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
         else assert(0);
         return res;
-        
-       /* else if(tokens[p].type == TK_NEG) //是负数的时候
-        {
-            uint32_t res;
-            sscanf(tokens[p].str,"%d",&res);
-            return -1*res;
-        }*/
     }
     else if(check_parentheses(p,q) == true){
         return eval(p+1,q-1);
@@ -274,7 +243,7 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
 
-  for(int i=0;i<nr_token;i++)
+  for(int i=0;i<nr_token;i++)  //负号的判断 当其为第一个符号，或左边为(时
       if(tokens[i].type == '-' &&(i==0||tokens[i-1].type == '('))
           tokens[i].type = TK_NEG;
   //*success = true;
