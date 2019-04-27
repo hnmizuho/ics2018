@@ -161,7 +161,7 @@ bool check_parentheses(int p,int q){
     }
 }
 uint32_t eval(int p,int q){
-    if(p>q){   //单目运算符时会出现此情况     
+    if(p>q){   //单目运算符时会出现此情况，如3+-1解释为3+ 和-1，3+缺省为3+0 
         // printf("Bad expression\n");
         return 0;
     }
@@ -169,7 +169,7 @@ uint32_t eval(int p,int q){
         uint32_t res;
         if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
-        else return 0;;
+        else return -1;
         return res;
     }
     else if(check_parentheses(p,q) == true){
@@ -232,7 +232,7 @@ uint32_t eval(int p,int q){
             case '*':return val1*val2;
             case '/':return val1/val2;
             case '!':return !val2;
-            case TK_NEG:return -1*val2;
+            case TK_NEG:return val1*val2;
             default:assert(0);
         }
     }
