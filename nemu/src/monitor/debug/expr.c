@@ -171,6 +171,12 @@ uint32_t eval(int p,int q){
             sscanf(tokens[p].str,"%d",&res);
             return res;
         }
+        else if(tokens[p].type == TK_NEG) //是负数的时候
+        {
+            uint32_t res;
+            sscanf(tokens[p].str,"%d",&res);
+            return -1*res;
+        }
         else{
             printf("Bad expression\n");
             assert(0);
