@@ -164,7 +164,7 @@ uint32_t eval(int p,int q){
     if(p>q){   //单目运算符时会出现此情况，如3+-1解释为3+ 和-1，3+缺省为3+0 
         // printf("Bad expression\n");
         if(tokens[p].type == TK_NEG)
-            return -1;
+            return 1;
         return 0;
     }
     else if(p==q){
