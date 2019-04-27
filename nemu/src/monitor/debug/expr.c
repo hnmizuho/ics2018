@@ -161,10 +161,10 @@ bool check_parentheses(int p,int q){
     }
 }
 uint32_t eval(int p,int q){
-    if(p>q){   //3+缺省为3+0 
+    if(p>q){   //3+缺省为3+0 --1缺省为0--1
         // printf("Bad expression\n");
-        //return 0;
-        assert(0);
+        return 0;
+        // assert(0);
     }
     else if(p==q){
         uint32_t res;
@@ -180,7 +180,7 @@ uint32_t eval(int p,int q){
         int op=0;
         int op_type=0;
         bool left = false;//出现左括号的flag
-        int curr_prev = 10;//当前存的符号优先级
+        int curr_prev = 100;//当前存的符号优先级
         for(int i=p;i<=q;i++){  //此处为p～q而不是0～q-p
             if(tokens[i].str[0]==')')
             {
@@ -211,6 +211,7 @@ uint32_t eval(int p,int q){
                 case '/':if(curr_prev>7){curr_prev=7;op=i;op_type='/';continue;}
                 case '!':if(curr_prev>8){curr_prev=8;op=i;op_type='!';continue;}
                 case TK_NEG:if(curr_prev>9){curr_prev=9;op=i;op_type=TK_NEG;continue;}
+                case TK_POI:if(curr_prev>9){curr_prev=9;op=i;op_type=TK_POI;continue;}
                 default:continue;
             }
         }
@@ -233,7 +234,8 @@ uint32_t eval(int p,int q){
             case '*':return val1*val2;
             case '/':return val1/val2;
             case '!':return !val2;
-            case TK_NEG:return -1*val2; //区分-1 --1
+            case TK_NEG:return -1*val2; 
+            case TK_POI:return vaddr_read(val2,4);
             default:assert(0);
         }
     }
@@ -252,7 +254,10 @@ uint32_t expr(char *e, bool *success) {
                                                                  ||tokens[i-1].type == '*'
                                                                  ||tokens[i-1].type == '/'))
             tokens[i].type = TK_NEG;
-
+ // if(nr_token!=1)
+      for(int i=0;i<nr_token;i++)
+          if(tokens[i].type == '*' &&(i==0||(tokens[i-1].type!=TK_DEC && tokens[i-1].type!=TK_HEX && tokens[i-1].type!=')')))
+            tokens[i].type = TK_POI;
 
   //*success = true;
   /* TODO: Insert codes to evaluate the expression. */
