@@ -40,7 +40,14 @@ WP* new_wp(){
         return tmp;
     }
 }
-void free_wp(WP *wp){
+void free_wp(int N){
+    WP *wp=head;
+    while(wp->next!=NULL)
+    {
+        if(wp->NO == N)
+            break;
+        wp = wp->next;
+    }
     if(head == wp)
         head = head->next;
     else

@@ -183,7 +183,7 @@ static int cmd_w(char *args) {
     bool *success = false;
     vaddr_t addr = expr(args,success);
     WP* nwp =  new_wp();
-    printf("Set watchpoint %d on 0x%08x",nwp->NO,addr);
+    printf("Set watchpoint %d on 0x%08x\n",nwp->NO,addr);
     return 0;
 }
 static int cmd_d(char *args) {
@@ -194,6 +194,8 @@ static int cmd_d(char *args) {
     }
     int N;
     sscanf(args,"%d",&N);
+    free_wp(N);
+    printf("Free watchpoint %d",N);
     return 0;
 }
 void ui_mainloop(int is_batch_mode) {
