@@ -171,13 +171,13 @@ uint32_t eval(int p,int q){
         if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
         else if(tokens[p].type == TK_REG){
-            printf("%s",tokens[p].str);
+            char tmp[3] = {tokens[p].str[1],tokens[p].str[2],tokens[p].str[3]};
             for(int i=0;i<8;i++)
-                if(!strcmp(tokens[p].str,regsl[i])){printf("%08x\n",cpu.gpr[i]._32);return cpu.gpr[i]._32;}
+                if(!strcmp(tmp,regsl[i])){printf("%08x\n",cpu.gpr[i]._32);return cpu.gpr[i]._32;}
             for(int i=0;i<8;i++)
-                if(!strcmp(tokens[p].str,regsw[i])){printf("%08x\n",cpu.gpr[i]._16);return cpu.gpr[i]._16;}
+                if(!strcmp(tmp,regsw[i])){printf("%08x\n",cpu.gpr[i]._16);return cpu.gpr[i]._16;}
             for(int i=0;i<8;i++) 
-                if(!strcmp(tokens[p].str,regsb[i])){printf("%08x\n",cpu.gpr[i%4]._8[i/4]);return cpu.gpr[i%4]._8[i/4];}
+                if(!strcmp(tmp,regsb[i])){printf("%08x\n",cpu.gpr[i%4]._8[i/4]);return cpu.gpr[i%4]._8[i/4];}
         }
         else assert(0);
         return res;
