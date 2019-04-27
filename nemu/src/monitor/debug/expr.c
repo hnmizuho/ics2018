@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {  //从256开始,为了避开ascii
-  TK_NOTYPE = 256, TK_HEX, TK_DEC, TK_REG, TK_EQ, TK_NEQ
+  TK_NOTYPE = 256, TK_HEX, TK_DEC, TK_REG, TK_EQ, TK_NEQ, TK_NEG
 
   /* TODO: Add more token types */
 
@@ -217,5 +217,39 @@ uint32_t expr(char *e, bool *success) {
   // TODO();  //什么鬼
   //
   //printf("RESULT=%d\n",eval(0, nr_token-1));
+
+  /*if(tokens[0].type == '-')  //如果是负号而不是减号，那么应该是第一个符号或者左边为(
+  {
+      tokens[0].type = TK_NEG;
+      if(nr_token == 1)
+          assert(0);
+      uint32_t changed;
+      if(tokens[1].type == TK_DEC)  //按照常识 符号后只跟十进制数
+      {
+          sscanf(tokens[1].str,"%d",&changed);
+          changed = -1 * changed;
+          itoa(changed,tokens[1].str,10);
+      }
+      else
+          asserts(0);
+  }
+  for(int i=0;i<nr_token;i++)
+  {
+      if((tokens[i].type == '-')&&(tokens[i-1].type == '('))
+      {
+          tokens[i].type = TK_NEG;
+          if(i+1==nr_token)
+              assert(0);
+          uint32_t changed;
+          if(tokens[i+1].type == TK_DEC)
+          {
+              sscanf(tokens[i+1].str,"%d",&changed);
+              changed = -1*changed;
+              itoa(changed,tokens[i+1].str,10);
+          }
+          else
+              asserts(0);
+      }
+  }*/
   return eval(0, nr_token-1);
 }
