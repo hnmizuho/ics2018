@@ -172,7 +172,7 @@ uint32_t eval(int p,int q){
         if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
         else if(tokens[p].type == TK_NEG)return 1; //p --1 return 1*1
-        else assert(0);
+        else return 0;
         return res;
     }
     else if(check_parentheses(p,q) == true){
