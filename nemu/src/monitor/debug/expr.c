@@ -163,13 +163,15 @@ bool check_parentheses(int p,int q){
 uint32_t eval(int p,int q){
     if(p>q){   //单目运算符时会出现此情况，如3+-1解释为3+ 和-1，3+缺省为3+0 
         // printf("Bad expression\n");
+        if(tokens[p].type == TK_NEG)
+            return -1;
         return 0;
     }
     else if(p==q){
         uint32_t res;
         if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
-        else return -1;
+        else assert(0);
         return res;
     }
     else if(check_parentheses(p,q) == true){
