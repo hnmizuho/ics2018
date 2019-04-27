@@ -20,7 +20,7 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 WP* new_wp(){
-    if(free_->NO == 0){
+    if(head == NULL){
         head = free_;
         free_=free_->next;
         head->next = NULL;
