@@ -225,7 +225,6 @@ uint32_t eval(int p,int q){
                 continue;
             }
             switch(tokens[i].type){
-                case '!':if(curr_prev>=0){curr_prev=0;op=i;op_type='!';continue;}
                 case TK_OR:if(curr_prev>=1){curr_prev=1;op=i;op_type=TK_OR;continue;}
                 case TK_AND:if(curr_prev>=2){curr_prev=2;op=i;op_type=TK_AND;continue;}
                 case TK_NEQ:if(curr_prev>=3){curr_prev=3;op=i;op_type=TK_NEQ;continue;}
@@ -240,6 +239,7 @@ uint32_t eval(int p,int q){
                 case '-':if(curr_prev>=6){curr_prev=6;op=i;op_type='-';continue;}
                 case '*':if(curr_prev>=7){curr_prev=7;op=i;op_type='*';continue;}
                 case '/':if(curr_prev>=7){curr_prev=7;op=i;op_type='/';continue;}
+                case '!':if(curr_prev>=8){curr_prev=8;op=i;op_type='!';continue;}
                 default:continue;
             }
         }
@@ -247,7 +247,6 @@ uint32_t eval(int p,int q){
         uint32_t val1 = eval(p,op-1);
         uint32_t val2 = eval(op+1,q);
         switch(op_type){
-            case '!':return !val2;
             case TK_OR:return val1||val2;
             case TK_AND:return val1&&val2;
             case TK_NEQ:return val1!=val2;
@@ -262,6 +261,7 @@ uint32_t eval(int p,int q){
             case '-':return val1-val2;
             case '*':return val1*val2;
             case '/':return val1/val2;
+            case '!':return !val2;
             default:assert(0);
         }
     }
