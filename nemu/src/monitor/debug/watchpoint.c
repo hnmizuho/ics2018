@@ -50,7 +50,7 @@ void free_wp(int N){
     }
     if(wp == NULL)
     {
-        printf("fail to"); //fail to free wp
+        printf("Fail to "); //fail to free wp
         return;
     }
     if(head == wp)
