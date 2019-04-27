@@ -152,7 +152,7 @@ static int cmd_x(char *args) {
     sscanf(expr,"%x",&addr);//尝试使用标准格式化输出
     for(int i=0;i<N;i++)
     {
-        printf("%08x:\t%08x\n",addr,vaddr_read(addr,4));
+        printf("0x%08x:\t0x%08x\n",addr,vaddr_read(addr,4));
         addr = addr+4;
     }
     return 0;

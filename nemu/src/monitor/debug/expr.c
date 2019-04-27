@@ -175,9 +175,9 @@ uint32_t eval(int p,int q){
             for(int i=0;i<8;i++)
                 if(!strcmp(tmp,regsl[i])){printf("0x%08x\n,or in decimal ",cpu.gpr[i]._32);return cpu.gpr[i]._32;}
             for(int i=0;i<8;i++)
-                if(!strcmp(tmp,regsw[i])){printf("0x%08x\n,or in decimal ",cpu.gpr[i]._16);return cpu.gpr[i]._16;}
+                if(!strcmp(tmp,regsw[i])){printf("0x%04x\n,or in decimal ",cpu.gpr[i]._16);return cpu.gpr[i]._16;}
             for(int i=0;i<8;i++) 
-                if(!strcmp(tmp,regsb[i])){printf("0x%08x\n,or in decimal",cpu.gpr[i%4]._8[i/4]);return cpu.gpr[i%4]._8[i/4];}
+                if(!strcmp(tmp,regsb[i])){printf("0x%02x\n,or in decimal",cpu.gpr[i%4]._8[i/4]);return cpu.gpr[i%4]._8[i/4];}
         }
         else assert(0);
         return res;
@@ -244,7 +244,7 @@ uint32_t eval(int p,int q){
             case '/':return val1/val2;
             case '!':return !val2;
             case TK_NEG:return -1*val2; 
-            case TK_POI:printf("%08x\n,or in decimal ",vaddr_read(val2,4));return vaddr_read(val2,4);
+            case TK_POI:printf("0x%08x\n,or in decimal ",vaddr_read(val2,4));return vaddr_read(val2,4);
             default:assert(0);
         }
     }
