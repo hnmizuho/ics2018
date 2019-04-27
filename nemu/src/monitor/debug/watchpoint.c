@@ -71,7 +71,7 @@ void free_wp(int N){
     free_ = wp;
 }
 void show_wp(){
-    printf("Num\tWhat");
+    printf("Num\tWhat\n");
     WP *tmp = head;
     while(tmp!=NULL)
     {
