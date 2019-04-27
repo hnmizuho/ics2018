@@ -186,7 +186,7 @@ static int cmd_w(char *args) {
     WP* nwp =  new_wp();
     nwp->eexpr = args;
     nwp->init = expr(args,success);
-    printf("Set watchpoint %d on 0x%s\n",nwp->NO,args);
+    printf("Set watchpoint %d on %s\n",nwp->NO,args);
     return 0;
 }
 static int cmd_d(char *args) {

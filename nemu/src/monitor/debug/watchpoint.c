@@ -83,7 +83,7 @@ bool check_wp(){  //监视点里某个变动了，返回true
     while(tmp!=NULL)
     {
         bool *success = false;
-        if(expr(tmp->eexpr,success) == tmp->init)
+        if(expr(tmp->eexpr,success) != tmp->init)
             return true;
         tmp = tmp->next;
     }
