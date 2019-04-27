@@ -179,8 +179,8 @@ uint32_t eval(int p,int q){
         if(tokens[p].type == '!')
         {
             uint32_t res;
-            if(tokens[q].type==TK_HEX)sscanf(tokens[p].str,"%x",&res);
-            if(tokens[q].type==TK_DEC)sscanf(tokens[p].str,"%d",&res);
+            if(tokens[q].type==TK_HEX)sscanf(tokens[q].str,"%x",&res);
+            if(tokens[q].type==TK_DEC)sscanf(tokens[q].str,"%d",&res);
             return !res;
         }
         else
