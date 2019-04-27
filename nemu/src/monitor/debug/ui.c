@@ -180,6 +180,10 @@ static int cmd_w(char *args) {
         printf("Lack of parameter!\n");
         return 0;
     }
+    bool *success = false;
+    vaddr_t addr = expr(args,success);
+    WP* nwp =  new_wp();
+    printf("Set watchpoint %d on 0x%08x",nwp->NO,addr);
     return 0;
 }
 static int cmd_d(char *args) {
