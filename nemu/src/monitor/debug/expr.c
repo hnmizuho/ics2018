@@ -165,7 +165,7 @@ uint32_t eval(int p,int q){
         printf("Bad expression\n");
         assert(0);
     }
-    if(tokens[p].type == '-') //负号的判断 当其为第一个符号，或左边为(时
+   /* if(tokens[p].type == '-') //负号的判断 当其为第一个符号，或左边为(时
     {
         if((p==0)||(tokens[p-1].type == '('))
         {
@@ -174,40 +174,31 @@ uint32_t eval(int p,int q){
             if(tokens[p].type == TK_DEC)tokens[p].type=TK_NEG; //根据常识右边应是10进制数，记为负数
             else assert(0);
         }
-    }
+    }*/
     if(p==q-1){   //双目运算符! *的情况
-        if(tokens[p].type == '!')
-        {
-            uint32_t res;
-            if(tokens[q].type==TK_HEX)sscanf(tokens[q].str,"%x",&res);
-            if(tokens[q].type==TK_DEC)sscanf(tokens[q].str,"%d",&res);
-            return !res;
-        }
-        else
-            assert(0);
+         uint32_t res;
+         if(tokens[q].type==TK_HEX) sscanf(tokens[q].str,"%x",&res);
+         else if(tokens[q].type==TK_DEC) sscanf(tokens[q].str,"%d",&res);
+         else assert(0);
+
+         if(tokens[p].type == '!')
+           return !res;
+         else
+             assert(0);
     }
     else if(p==q){
-        if(tokens[p].type == TK_HEX){
-            uint32_t res;
-            sscanf(tokens[p].str,"%x",&res);
-            return res;
-        }
-        else if(tokens[p].type == TK_DEC)
-        {
-            uint32_t res;
-            sscanf(tokens[p].str,"%d",&res);
-            return res;
-        }
-        else if(tokens[p].type == TK_NEG) //是负数的时候
+        uint32_t res;
+        if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
+        else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
+        else assert(0);
+        return res;
+        
+       /* else if(tokens[p].type == TK_NEG) //是负数的时候
         {
             uint32_t res;
             sscanf(tokens[p].str,"%d",&res);
             return -1*res;
-        }
-        else{
-            printf("Bad expression\n");
-            assert(0);
-        }
+        }*/
     }
     else if(check_parentheses(p,q) == true){
         return eval(p+1,q-1);
