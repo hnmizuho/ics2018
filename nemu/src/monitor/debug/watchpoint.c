@@ -75,7 +75,7 @@ void show_wp(){
     WP *tmp = head;
     while(tmp!=NULL)
     {
-        printf("%d\t%s",tmp->NO,tmp->eexpr);
+        printf("%d\t%s\n",tmp->NO,tmp->eexpr);
         tmp = tmp->next;
     }
 }
