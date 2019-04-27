@@ -41,6 +41,8 @@ static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_x(char *args);
 static int cmd_p(char *args);
+static int cmd_w(char *args);
+static int cmd_d(char *args);
 static struct {
   char *name;
   char *description;
@@ -53,6 +55,8 @@ static struct {
   { "info", "Print regs' or watchpoint's state", cmd_info },
   { "x", "Scan the mem", cmd_x },
   { "p", "Expression evaluation", cmd_p },
+  { "w", "Set watchpoint", cmd_w },
+  { "d", "Delete watchpoint", cmd_d },
   /* TODO: Add more commands */
 
 };
@@ -125,7 +129,7 @@ static int cmd_info(char *args) {
 }
 static int cmd_x(char *args) {
     int N;
-    char* expr;
+    char* expr0;
 
     char *arg = strtok(NULL, " ");
     if(arg == NULL)
@@ -140,16 +144,16 @@ static int cmd_x(char *args) {
     }
     //printf("%d\n",N);
 
-    expr = strtok(NULL, " ");
-    if(expr == NULL)
+    expr0 = strtok(NULL, " ");
+    if(expr0 == NULL)
     {
         printf("Lack of parameter!\n");
         return 0;
     }
     //printf("%s\n",expr);
 
-    vaddr_t addr;
-    sscanf(expr,"%x",&addr);//尝试使用标准格式化输出
+    bool *success=false;
+    vaddr_t addr = expr(expr0,success);
     for(int i=0;i<N;i++)
     {
         printf("0x%08x:\t0x%08x\n",addr,vaddr_read(addr,4));
@@ -168,6 +172,24 @@ static int cmd_p(char *args) {
     }
     uint32_t res =  expr(args,success);
     printf("%d\n",res);
+    return 0;
+}
+static int cmd_w(char *args) {
+    if(args == NULL)
+    {
+        printf("Lack of parameter!\n");
+        return 0;
+    }
+    return 0;
+}
+static int cmd_d(char *args) {
+    if(args == NULL)
+    {
+        printf("Lack of parameter!\n");
+        return 0;
+    }
+    int N;
+    sscanf(args,"%d",&N);
     return 0;
 }
 void ui_mainloop(int is_batch_mode) {
