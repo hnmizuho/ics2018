@@ -88,6 +88,7 @@ bool check_wp(){  //监视点里某个变动了，返回true
         {
             printf("Watchpoint %d: %s\n",tmp->NO,tmp->eexpr);
             printf("Old value = %08x\nNew value = %08x\n",tmp->init,new_val);
+            tmp->init = new_val;//赋上新值
             return true;
         }
         tmp = tmp->next;
