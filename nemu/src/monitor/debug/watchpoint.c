@@ -83,7 +83,7 @@ void free_wp(int N){
 }
 void show_wp(){
     WP *tmp = head;
-    while(tmp->next!=NULL)
+    while(tmp!=NULL)
     {
         printf("NO:%d\n",tmp->NO);
         tmp = tmp->next;
