@@ -11,7 +11,7 @@ enum {  //从256开始,为了避开ascii
   TK_AND, TK_OR,
   TK_NEG,      //负数的十进制
   TK_POI,       //指针解引用
-  TK_LS, TK_RS, TK_BT, TK_BOE, TK_LT, TK_LOE
+  TK_LS, TK_RS, TK_BOE, TK_LOE
 
   /* TODO: Add more token types */
 
@@ -48,9 +48,9 @@ static struct rule {
 
   {"<<", TK_LS},
   {">>", TK_RS},
-  {">", TK_BT},
+  {">", '>'},
   {">=", TK_BOE},
-  {"<", TK_LT},
+  {"<", '<'},
   {"<=", TK_LOE}
 
 };
@@ -203,7 +203,7 @@ uint32_t eval(int p,int q){
     }
     else{
         int op=0;
-        char op_type='\0';
+        int op_type=0;
         bool left = false;//出现左括号的flag
         int curr_prev = 3;//当前存的符号优先级
         for(int i=p;i<=q;i++){  //此处为p～q而不是0～q-p
@@ -220,10 +220,20 @@ uint32_t eval(int p,int q){
                 continue;
             }
             switch(tokens[i].type){
-                case '+':if(curr_prev>=1){curr_prev=1;op=i;op_type='+';continue;}
-                case '-':if(curr_prev>=1){curr_prev=1;op=i;op_type='-';continue;}
-                case '*':if(curr_prev>=2){curr_prev=2;op=i;op_type='*';continue;}
-                case '/':if(curr_prev>=2){curr_prev=2;op=i;op_type='/';continue;}
+                case TK_OR:if(curr_prev>=1){curr_prev=1;op=i;op_type=TK_OR;continue;}
+                case TK_AND:if(curr_prev>=2){curr_prev=2;op=i;op_type=TK_AND;continue;}
+                case TK_NEQ:if(curr_prev>=3){curr_prev=3;op=i;op_type=TK_NEQ;continue;}
+                case TK_EQ:if(curr_prev>=3){curr_prev=3;op=i;op_type=TK_EQ;continue;}
+                case TK_LOE:if(curr_prev>=4){curr_prev=4;op=i;op_type=TK_LOE;continue;}
+                case TK_BOE:if(curr_prev>=4){curr_prev=4;op=i;op_type=TK_BOE;continue;}
+                case '<':if(curr_prev>=4){curr_prev=4;op=i;op_type='<';continue;}
+                case '>':if(curr_prev>=4){curr_prev=4;op=i;op_type='>';continue;}
+                case TK_RS:if(curr_prev>=5){curr_prev=5;op=i;op_type=TK_RS;continue;}
+                case TK_LS:if(curr_prev>=5){curr_prev=5;op=i;op_type=TK_LS;continue;}
+                case '+':if(curr_prev>=6){curr_prev=6;op=i;op_type='+';continue;}
+                case '-':if(curr_prev>=6){curr_prev=6;op=i;op_type='-';continue;}
+                case '*':if(curr_prev>=7){curr_prev=7;op=i;op_type='*';continue;}
+                case '/':if(curr_prev>=7){curr_prev=7;op=i;op_type='/';continue;}
                 default:continue;
             }
         }
@@ -231,6 +241,16 @@ uint32_t eval(int p,int q){
         uint32_t val1 = eval(p,op-1);
         uint32_t val2 = eval(op+1,q);
         switch(op_type){
+            case TK_OR:return val1||val2;
+            case TK_AND:return val1&&val2;
+            case TK_NEQ:return val1!=val2;
+            case TK_EQ:return val1==val2;
+            case TK_LOE:return val1<=val2;
+            case TK_BOE:return val1>=val2;
+            case '<':return val1<val2;
+            case '>':return val1>val2;
+            case TK_RS:return val1>>val2;
+            case TK_LS:return val1<<val2;
             case '+':return val1+val2;
             case '-':return val1-val2;
             case '*':return val1*val2;
