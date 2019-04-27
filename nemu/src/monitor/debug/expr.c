@@ -161,9 +161,9 @@ bool check_parentheses(int p,int q){
     }
 }
 uint32_t eval(int p,int q){
-    if(p>q){        
-        printf("Bad expression\n");
-        assert(0);
+    if(p>q){   //单目运算符时会出现此情况     
+        // printf("Bad expression\n");
+        return 0;
     }
    /* if(tokens[p].type == '-') //负号的判断 当其为第一个符号，或左边为(时
     {
