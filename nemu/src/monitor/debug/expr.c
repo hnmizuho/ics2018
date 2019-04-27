@@ -171,6 +171,7 @@ uint32_t eval(int p,int q){
         if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
         else if(tokens[p].type == TK_REG){
+            printf("%s",tokens[p].str);
             for(int i=0;i<8;i++)
                 if(!strcmp(tokens[p].str,regsl[i])){printf("%08x\n",cpu.gpr[i]._32);return cpu.gpr[i]._32;}
             for(int i=0;i<8;i++)
