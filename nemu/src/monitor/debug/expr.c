@@ -220,20 +220,20 @@ uint32_t eval(int p,int q){
                 continue;
             }
             switch(tokens[i].type){
-                case '*':if(curr_prev>=1){curr_prev=1;op=i;op_type='*';continue;}
-                case '/':if(curr_prev>=1){curr_prev=1;op=i;op_type='/';continue;}
-                case '+':if(curr_prev>=2){curr_prev=2;op=i;op_type='+';continue;}
-                case '-':if(curr_prev>=2){curr_prev=2;op=i;op_type='-';continue;}
-                case TK_LS:if(curr_prev>=3){curr_prev=3;op=i;op_type=TK_LS;continue;}
-                case TK_RS:if(curr_prev>=3){curr_prev=3;op=i;op_type=TK_RS;continue;}
+                case '*':if(curr_prev>=7){curr_prev=7;op=i;op_type='*';continue;}
+                case '/':if(curr_prev>=7){curr_prev=7;op=i;op_type='/';continue;}
+                case '+':if(curr_prev>=6){curr_prev=6;op=i;op_type='+';continue;}
+                case '-':if(curr_prev>=6){curr_prev=6;op=i;op_type='-';continue;}
+                case TK_LS:if(curr_prev>=5){curr_prev=5;op=i;op_type=TK_LS;continue;}
+                case TK_RS:if(curr_prev>=5){curr_prev=5;op=i;op_type=TK_RS;continue;}
                 case '>':if(curr_prev>=4){curr_prev=4;op=i;op_type='>';continue;}
                 case TK_BOE:if(curr_prev>=4){curr_prev=4;op=i;op_type=TK_BOE;continue;}
                 case '<':if(curr_prev>=4){curr_prev=4;op=i;op_type='<';continue;}
                 case TK_LOE:if(curr_prev>=4){curr_prev=4;op=i;op_type=TK_LOE;continue;}
-                case TK_EQ:if(curr_prev>=5){curr_prev=5;op=i;op_type=TK_EQ;continue;}
-                case TK_NEQ:if(curr_prev>=5){curr_prev=5;op=i;op_type=TK_NEQ;continue;}
-                case TK_AND:if(curr_prev>=6){curr_prev=6;op=i;op_type=TK_AND;continue;}
-                case TK_OR:if(curr_prev>=7){curr_prev=7;op=i;op_type=TK_OR;continue;}
+                case TK_EQ:if(curr_prev>=3){curr_prev=3;op=i;op_type=TK_EQ;continue;}
+                case TK_NEQ:if(curr_prev>=3){curr_prev=3;op=i;op_type=TK_NEQ;continue;}
+                case TK_AND:if(curr_prev>=2){curr_prev=2;op=i;op_type=TK_AND;continue;}
+                case TK_OR:if(curr_prev>=1){curr_prev=1;op=i;op_type=TK_OR;continue;}
                 default:continue;
             }
         }
