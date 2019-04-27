@@ -69,26 +69,6 @@ void free_wp(int N){
     }
     wp->next = free_;
     free_ = wp;
-
-
-    /*
-    if(wp->NO<free_->NO)
-    {
-        wp->next = free_;
-        free_ = wp;
-    }
-    else
-    {
-        WP *tmp1 = free_;
-        while(tmp1!=NULL){
-            if(tmp1->next->NO>wp->NO)
-            {
-                wp->next = tmp1->next;
-                tmp1->next = wp;
-            }
-            tmp1 = tmp1->next;
-        }
-    }*/
 }
 void show_wp(){
     WP *tmp = head;

@@ -184,7 +184,11 @@ static int cmd_w(char *args) {
     }
     bool *success = false;
     vaddr_t addr = expr(args,success);
+    uint32_t init = vaddr_read(addr,4);
+
     WP* nwp =  new_wp();
+    nwp->eexpr = args;
+    nwp->init = init;
     printf("Set watchpoint %d on 0x%08x\n",nwp->NO,addr);
     return 0;
 }
