@@ -163,7 +163,7 @@ bool check_parentheses(int p,int q){
 uint32_t eval(int p,int q){
     if(p>q){   //单目运算符时会出现此情况     
         // printf("Bad expression\n");
-        return -1;
+        return 0;
     }
     else if(p==q){
         uint32_t res;
