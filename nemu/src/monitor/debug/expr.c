@@ -163,13 +163,13 @@ bool check_parentheses(int p,int q){
 uint32_t eval(int p,int q){
     if(p>q){   //单目运算符时会出现此情况     
         // printf("Bad expression\n");
-        return 0;
+        return -1;
     }
     else if(p==q){
         uint32_t res;
         if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
-        else assert(0);
+        else return 0;;
         return res;
     }
     else if(check_parentheses(p,q) == true){
