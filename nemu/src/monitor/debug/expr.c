@@ -161,9 +161,10 @@ bool check_parentheses(int p,int q){
     }
 }
 uint32_t eval(int p,int q){
-    if(p>q){   //单目运算符时会出现此情况，如3+-1解释为3+ 和-1，3+缺省为3+0 
+    if(p>q){   //3+缺省为3+0 
         // printf("Bad expression\n");
-        return 0;
+        //return 0;
+        assert(0);
     }
     else if(p==q){
         uint32_t res;
