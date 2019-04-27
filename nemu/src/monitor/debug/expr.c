@@ -9,7 +9,7 @@
 enum {  //从256开始,为了避开ascii
   TK_NOTYPE = 256, TK_HEX, TK_DEC, TK_REG, TK_EQ, TK_NEQ, 
   TK_AND, TK_OR,
-  TK_NEG,      //负数的十进制
+  TK_NEG,      //-代表负数
   TK_POI,       //指针解引用
   TK_LS, TK_RS, TK_BOE, TK_LOE
 
@@ -183,7 +183,7 @@ uint32_t eval(int p,int q){
 
          if(tokens[p].type == '!')
            return !res;
-         else if(tokens[p].type == '-')
+         else if(tokens[p].type == TK_NEG)
              return -1*res;
          else
              assert(0);
@@ -268,6 +268,10 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
+
+  for(int i=0;i<nr_token;i++)
+      if(tokens[i].type == '-' &&(i==0||tokens[i-1].type == '('))
+          tokens[i].type = TK_NEG;
   //*success = true;
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();  //什么鬼
