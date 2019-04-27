@@ -172,7 +172,7 @@ uint32_t eval(int p,int q){
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
         else if(tokens[p].type == TK_REG){
             for(int i=0;i<8;i++)
-                if(!strcmp(tokens[p].str,regsl[i])){printf("%08x",cpu.gpr[i]._32);return cpu.gpr[i]._32;}
+                if(!strcmp(tokens[p].str,regsl[i])){printf("%08x\n",cpu.gpr[i]._32);return cpu.gpr[i]._32;}
             for(int i=0;i<8;i++)
                 if(!strcmp(tokens[p].str,regsw[i]))return cpu.gpr[i]._16;
             for(int i=0;i<8;i++) 
