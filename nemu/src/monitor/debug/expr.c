@@ -175,7 +175,18 @@ uint32_t eval(int p,int q){
             else assert(0);
         }
     }
-    if(p==q){
+    if(p==q-1){   //双目运算符! *的情况
+        if(tokens[p].type == '!')
+        {
+            uint32_t res;
+            if(tokens[q].type==TK_HEX)sscanf(tokens[p].str,"%x",&res);
+            if(tokens[q].type==TK_DEC)sscanf(tokens[p].str,"%d",&res);
+            return !res;
+        }
+        else
+            assert(0);
+    }
+    else if(p==q){
         if(tokens[p].type == TK_HEX){
             uint32_t res;
             sscanf(tokens[p].str,"%x",&res);
