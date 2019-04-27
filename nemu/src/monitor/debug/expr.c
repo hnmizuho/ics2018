@@ -246,8 +246,8 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
 
-  for(int i=0;i<nr_token;i++)  //负号的判断 当其为第一个符号，或左边为(时
-      if(tokens[i].type == '-' &&(i==0||tokens[i-1].type == '('||tokens[i-1].type == '-'))
+  for(int i=0;i<nr_token;i++)  //负号的判断 当其为第一个符号，或左边为(时,或按照讲义左边可能为负号(--1)
+      if(tokens[i].type == '-' &&(i==0||tokens[i-1].type == '('||tokens[i-1].type == TK_NEG))
           tokens[i].type = TK_NEG;
   //*success = true;
   /* TODO: Insert codes to evaluate the expression. */
