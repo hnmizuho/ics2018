@@ -81,6 +81,7 @@ void show_wp(){
 }
 bool check_wp(){  //监视点里某个变动了，返回true
     WP *tmp = head;
+    bool had_changed = false;
     while(tmp!=NULL)
     {
         bool *success = false;
@@ -90,9 +91,11 @@ bool check_wp(){  //监视点里某个变动了，返回true
             printf("Watchpoint %d: %s\n",tmp->NO,tmp->eexpr);
             printf("Old value = 0x%08x\nNew value = 0x%08x\n",tmp->init,new_val);
             tmp->init = new_val;//赋上新值
-            return true;
+            had_changed = true; //每一个监视点的变化都要输出
         }
         tmp = tmp->next;
     }
+    if(had_changed)
+        return true;
     return false;
 }
