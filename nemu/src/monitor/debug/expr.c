@@ -240,6 +240,7 @@ uint32_t eval(int p,int q){
                 case '*':if(curr_prev>=7){curr_prev=7;op=i;op_type='*';continue;}
                 case '/':if(curr_prev>=7){curr_prev=7;op=i;op_type='/';continue;}
                 case '!':if(curr_prev>=8){curr_prev=8;op=i;op_type='!';continue;}
+                case TK_NEG:if(curr_prev>=9){curr_prev=9;op=i;op_type=TK_NEG;continue;}
                 default:continue;
             }
         }
@@ -262,6 +263,7 @@ uint32_t eval(int p,int q){
             case '*':return val1*val2;
             case '/':return val1/val2;
             case '!':return !val2;
+            case TK_NEG:return -1*val2;
             default:assert(0);
         }
     }
