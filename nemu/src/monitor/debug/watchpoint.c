@@ -35,7 +35,8 @@ WP* new_wp(){
         }
         tmp->next = free_;
         free_ = free_->next;
-        tmp->next->next = NULL;
+        tmp = tmp->next;
+        tmp->next = NULL;
         return tmp;
     }
 }
