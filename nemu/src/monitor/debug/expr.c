@@ -149,7 +149,7 @@ uint32_t eval(int p,int q){
         printf("Bad expression\n");
         assert(0);
     }
-   /* else if(tokens[p].type == '-') //负号的判断 当其为第一个符号，或左边为(时
+    if(tokens[p].type == '-') //负号的判断 当其为第一个符号，或左边为(时
     {
         if((p==0)||(tokens[p-1].type == '('))
         {
@@ -158,8 +158,8 @@ uint32_t eval(int p,int q){
             if(tokens[p].type == TK_DEC)tokens[p].type=TK_NEG; //根据常识右边应是10进制数，记为负数
             else assert(0);
         }
-    }*/
-    else if(p==q){
+    }
+    if(p==q){
         if(tokens[p].type == TK_HEX){
             uint32_t res;
             sscanf(tokens[p].str,"%x",&res);
