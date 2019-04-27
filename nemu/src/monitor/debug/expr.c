@@ -164,14 +164,14 @@ uint32_t eval(int p,int q){
     if(p>q){   //单目运算符时会出现此情况，如3+-1解释为3+ 和-1，3+缺省为3+0 
         // printf("Bad expression\n");
         if(tokens[p].type == TK_NEG)
-            return -1;
+            return -1; //p -1 return -1*1
         return 0;
     }
     else if(p==q){
         uint32_t res;
         if(tokens[p].type == TK_HEX) sscanf(tokens[p].str,"%x",&res);
         else if(tokens[p].type == TK_DEC) sscanf(tokens[p].str,"%d",&res);
-        else if(tokens[p].type == TK_NEG)return 1;
+        else if(tokens[p].type == TK_NEG)return 1; //p --1 return 1*1
         else assert(0);
         return res;
     }
@@ -235,7 +235,7 @@ uint32_t eval(int p,int q){
             case '*':return val1*val2;
             case '/':return val1/val2;
             case '!':return !val2;
-            case TK_NEG:return val1*val2;
+            case TK_NEG:return val1*val2; //区分-1 --1
             default:assert(0);
         }
     }
@@ -246,7 +246,7 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
 
-  if(nr_token!=1)
+  if(nr_token!=1)  //只有一个符号时没必要区分
     for(int i=0;i<nr_token;i++)  //负号的判断 当其为第一个符号，或左边为(时,或按照讲义左边可能为负号(--1)
         if(tokens[i].type == '-' &&(i==0||tokens[i-1].type == '('||tokens[i-1].type == TK_NEG
                                                                  ||tokens[i-1].type == '-'
@@ -254,6 +254,8 @@ uint32_t expr(char *e, bool *success) {
                                                                  ||tokens[i-1].type == '*'
                                                                  ||tokens[i-1].type == '/'))
             tokens[i].type = TK_NEG;
+
+
   //*success = true;
   /* TODO: Insert codes to evaluate the expression. */
   // TODO();  //什么鬼
