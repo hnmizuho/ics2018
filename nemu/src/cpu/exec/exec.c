@@ -24,8 +24,9 @@ static inline void set_width(int width) {
 static inline void idex(vaddr_t *eip, opcode_entry *e) {
   /* eip is pointing to the byte next to opcode */
   if (e->decode)
-    e->decode(eip);
-  e->execute(eip);
+    e->decode(eip); // void decode(eip)，由typedef void (*DEelper) (vaddr_t*)定义,而其在e中为例如I2E,即执行decode_I2E(eip),它在decode.h声明
+                    // 这函数由好几个decode_op_组成
+  e->execute(eip); // EHelper(eip), 例如执行exec_mov, 里面若干条RTL
 }
 
 static make_EHelper(2byte_esc);
@@ -213,10 +214,10 @@ static make_EHelper(2byte_esc) {
 }
 
 make_EHelper(real) {
-  uint32_t opcode = instr_fetch(eip, 1);
+  uint32_t opcode = instr_fetch(eip, 1); // 将指令第1个字节作为opcode
   decoding.opcode = opcode;
-  set_width(opcode_table[opcode].width);
-  idex(eip, &opcode_table[opcode]);
+  set_width(opcode_table[opcode].width);// 查表记录宽度
+  idex(eip, &opcode_table[opcode]);// 接着译码执行
 }
 
 static inline void update_eip(void) {
@@ -229,9 +230,9 @@ void exec_wrapper(bool print_flag) {
   decoding.p += sprintf(decoding.p, "%8x:   ", cpu.eip);
 #endif
 
-  decoding.seq_eip = cpu.eip;
-  exec_real(&decoding.seq_eip);
-
+  decoding.seq_eip = cpu.eip; //保存当前eip
+  exec_real(&decoding.seq_eip); //一个执行阶段相关的helper函数，由EHepler定义，即调用make_EHelper(real)
+  // 返回后，seq_eip指向下一条
 #ifdef DEBUG
   int instr_len = decoding.seq_eip - cpu.eip;
   sprintf(decoding.p, "%*.s", 50 - (12 + 3 * instr_len), "");
@@ -246,7 +247,7 @@ void exec_wrapper(bool print_flag) {
   uint32_t eip = cpu.eip;
 #endif
 
-  update_eip();
+  update_eip(); // update
 
 #ifdef DIFF_TEST
   void difftest_step(uint32_t);
