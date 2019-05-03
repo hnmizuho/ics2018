@@ -31,6 +31,20 @@ typedef struct {
   };
   vaddr_t eip;
 
+  union{
+      uint32_t val;//和下面的32bits占用同一片空间，整个eflags的值
+      struct{
+          uint32_t CF:1;
+          unsigned:5;
+          uint32_t ZF:1;
+          uint32_t SF:1;
+          unsigned:1;
+          uint32_t IF:1;
+          unsigned:1;
+          uint32_t OF:1;
+          unsigned:20;
+      }; //这个结构占用32bits
+  }eflags;//32bits寄存器
 } CPU_state;
 
 extern CPU_state cpu;

@@ -23,10 +23,10 @@ static inline void set_width(int width) {
 /* Instruction Decode and EXecute */
 static inline void idex(vaddr_t *eip, opcode_entry *e) {
   /* eip is pointing to the byte next to opcode */
+  //这一堆helper全都有eip参数，宏展开
   if (e->decode)
-    e->decode(eip); // void decode(eip)，由typedef void (*DEelper) (vaddr_t*)定义,而其在e中为例如I2E,即执行decode_I2E(eip),它在decode.h声明
-                    // 这函数由好几个decode_op_组成
-  e->execute(eip); // EHelper(eip), 例如执行exec_mov, 里面若干条RTL
+    e->decode(eip); // 这函数由好几个decode_op_组成
+  e->execute(eip);  // 里面若干条RTL
 }
 
 static make_EHelper(2byte_esc);
