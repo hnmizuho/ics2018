@@ -111,12 +111,13 @@ static inline void rtl_sr(int r, int width, const rtlreg_t* src1) {
   }
 }
 
+// 预处理时做好，不受词法分析约束
 #define make_rtl_setget_eflags(f) \
   static inline void concat(rtl_set_, f) (const rtlreg_t* src) { \
-    TODO(); \
+    cpu.eflags.f = *src; \
   } \
   static inline void concat(rtl_get_, f) (rtlreg_t* dest) { \
-    TODO(); \
+    *dest = cpu.eflags.f; \
   }
 
 make_rtl_setget_eflags(CF)
@@ -170,7 +171,7 @@ static inline void rtl_neq0(rtlreg_t* dest, const rtlreg_t* src1) {
 
 static inline void rtl_msb(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- src1[width * 8 - 1]
-  TODO();
+  rtl_li(dest,src1[width * 8 - 1]); // 装载立即数
 }
 
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
