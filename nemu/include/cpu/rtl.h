@@ -32,7 +32,7 @@ static inline void rtl_li(rtlreg_t* dest, uint32_t imm) {
   }
 
 
-make_rtl_arith_logic(add)
+make_rtl_arith_logic(add) //rtl_add(d,s1,s2) rtl_addi(d,s1,s2)
 make_rtl_arith_logic(sub)
 make_rtl_arith_logic(and)
 make_rtl_arith_logic(or)
@@ -141,14 +141,16 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
 
 static inline void rtl_push(const rtlreg_t* src1) {
   // esp <- esp - 4
+  rtl_subi(&cpu.esp,&cpu.esp,4);
   // M[esp] <- src1
-  TODO();
+  rtl_sm(&cpu.esp,4,src1);
 }
 
 static inline void rtl_pop(rtlreg_t* dest) {
   // dest <- M[esp]
+  rtl_lm(dest,&cpu.esp,4);
   // esp <- esp + 4
-  TODO();
+  rtl_addi(&cpu.esp,&cpu.esp,4);
 }
 
 static inline void rtl_eq0(rtlreg_t* dest, const rtlreg_t* src1) {
