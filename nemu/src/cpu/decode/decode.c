@@ -38,12 +38,12 @@ static inline make_DopHelper(SI) {
    *
    op->simm = ???
    */
-
+  //之前忘了符号扩展
+  //这里出现的问题时，临时寄存器和rtl_sext里重名了
   t0 = instr_fetch(eip,op->width);
-  printf("t0 %d width %d\n",t0,op->width);
   rtl_sext(&t0,&t0,op->width);
-  printf("t0 %d\n",t0);
   op->simm = t0;
+
   rtl_li(&op->val, op->simm);
 
 #ifdef DEBUG
