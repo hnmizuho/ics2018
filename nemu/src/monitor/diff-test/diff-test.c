@@ -149,15 +149,51 @@ void difftest_step(uint32_t eip) {
 
   // TODO: Check the registers state with QEMU.
   // Set `diff` as `true` if they are not the same.
-  if(r.eip != cpu.eip || r.eax != cpu.eax || r.ecx != cpu.ecx ||
-                         r.edx != cpu.edx || r.ebx != cpu.ebx ||
-                         r.esp != cpu.esp || r.ebp != cpu.ebp ||
-                         r.esi != cpu.esi || r.edi != cpu.edi)
-  {
+  if(r.eip != cpu.eip){
       diff = true;
-      printf("Diff between QEMU and NEMU! END the program.");
+      printf("Diff: eip  QEMU: %08x",r.eip);
+      printf("           NEMU: %08x",cpu.eip);
   }
-
+  if(r.eax != cpu.eax){
+      diff = true;
+      printf("Diff: eax  QEMU: %08x",r.eax);
+      printf("           NEMU: %08x",cpu.eax);
+  }
+  if(r.ecx != cpu.ecx){
+      diff = true;
+      printf("Diff: ecx  QEMU: %08x",r.ecx);
+      printf("           NEMU: %08x",cpu.ecx);
+  }
+  if(r.ebx != cpu.ebx){
+      diff = true;
+      printf("Diff: ebx  QEMU: %08x",r.ebx);
+      printf("           NEMU: %08x",cpu.ebx);
+  }
+  if(r.edx != cpu.edx){
+      diff = true;
+      printf("Diff: edx  QEMU: %08x",r.edx);
+      printf("           NEMU: %08x",cpu.edx);
+  }
+  if(r.ebp != cpu.ebp){
+      diff = true;
+      printf("Diff: ebp  QEMU: %08x",r.ebp);
+      printf("           NEMU: %08x",cpu.ebp);
+  }
+  if(r.esp != cpu.esp){
+      diff = true;
+      printf("Diff: esp  QEMU: %08x",r.esp);
+      printf("           NEMU: %08x",cpu.esp);
+  }
+  if(r.esi != cpu.esi){
+      diff = true;
+      printf("Diff: esi  QEMU: %08x",r.esi);
+      printf("           NEMU: %08x",cpu.esi);
+  }
+  if(r.edi != cpu.edi){
+      diff = true;
+      printf("Diff: edi  QEMU: %08x",r.edi);
+      printf("           NEMU: %08x",cpu.edi);
+  }
   if (diff) {
     nemu_state = NEMU_END;
   }
