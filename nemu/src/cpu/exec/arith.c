@@ -46,7 +46,9 @@ make_EHelper(sub) {
 
 make_EHelper(cmp) {
   //cmp不存结果，只改变cflags
-  //但似乎存了也没问题，反正不会用到 直接存到src里
+  //但似乎存了也没问题，反正不会用到 直接存到src里作为中间量
+  //复用sub代码，但是src2需要符号扩展
+  rtl_sext(&id_src2->val,&id_src2->val,id_src2->width);
   rtl_sub(&t2, &id_src->val, &id_src2->val);
   rtl_sltu(&t3, &id_src->val, &t2);
 
