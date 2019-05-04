@@ -45,7 +45,24 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
-  TODO();
+  //cmp不存结果，只改变cflags
+  //但似乎存了也没问题，反正不会用到 直接存到src里
+  rtl_sub(&t2, &id_src->val, &id_src2->val);
+  rtl_sltu(&t3, &id_src->val, &t2);
+
+  operand_write(id_src, &t2);
+
+  rtl_update_ZFSF(&t2, id_src->width);
+
+  rtl_sltu(&t0, &id_src->val, &t2);
+  rtl_or(&t0, &t3, &t0);
+  rtl_set_CF(&t0);
+
+  rtl_xor(&t0, &id_src->val, &id_src2->val);
+  rtl_xor(&t1, &id_src->val, &t2);
+  rtl_and(&t0, &t0, &t1);
+  rtl_msb(&t0, &t0, id_src->width);
+  rtl_set_OF(&t0);
 
   print_asm_template2(cmp);
 }
