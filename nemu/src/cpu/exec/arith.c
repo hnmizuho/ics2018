@@ -66,6 +66,7 @@ make_EHelper(cmp) {
   rtl_msb(&t0, &t0, id_src->width);
   rtl_set_OF(&t0);*/
 
+  rtl_sext(&id_src->val,&id_src->val,id_src->width);
   rtl_sub(&t2, &id_dest->val, &id_src->val);
   rtl_sltu(&t3, &id_dest->val, &t2);
 
