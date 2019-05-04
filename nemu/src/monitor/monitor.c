@@ -75,6 +75,7 @@ static inline void load_img() {
   }
 
 #ifdef DIFF_TEST
+  //宏定义DIFF_TEST后执行代码 客户程序拷贝一份到qemu
   gdb_memcpy_to_qemu(ENTRY_START, guest_to_host(ENTRY_START), size);
 #endif
 }
@@ -86,6 +87,7 @@ static inline void restart() {
   //eflags 设置初值
   cpu.eflags.val = 0x00000002;
 #ifdef DIFF_TEST
+  //设置到和nemu相同
   init_qemu_reg();
 #endif
 }
