@@ -31,6 +31,7 @@ make_EHelper(xor);
 make_EHelper(and); 
 make_EHelper(or); 
 make_EHelper(setcc); 
+make_EHelper(test); 
 // special.c
 make_EHelper(nop); 
 
