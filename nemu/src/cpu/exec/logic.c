@@ -2,7 +2,7 @@
 
 make_EHelper(test) {
   rtl_and(&t0,&id_src->val,&id_src2->val);
-  operand_write(id_dest,&t0);
+  //operand_write(id_dest,&t0); //手册为dest=src and src2但好像实际上不需要
   rtl_set_CF(&tzero);
   rtl_set_OF(&tzero);
 
