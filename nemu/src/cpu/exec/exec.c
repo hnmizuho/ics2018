@@ -43,7 +43,7 @@ static make_EHelper(name) { \
 /* 0x80, 0x81, 0x83 */
 make_group(gp1,
     EMPTY, EMPTY, EMPTY, EMPTY,
-    EMPTY, EX(sub), EMPTY, EMPTY) //同一组内 译码已不可取，故用EX
+    EX(and), EX(sub), EMPTY, EMPTY) //同一组内 译码已不可取，故用EX
 
   /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
 make_group(gp2,
