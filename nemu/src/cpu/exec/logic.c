@@ -59,7 +59,7 @@ make_EHelper(setcc) {
   rtl_setcc(&t2, subcode);
 
   operand_write(id_dest, &t2);
-printf("AA%d\n",id_dest->val);
+printf("AA%08x\n",id_dest->val);
   print_asm("set%s %s", get_cc_name(subcode), id_dest->str);
 }
 
