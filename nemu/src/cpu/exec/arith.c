@@ -48,7 +48,7 @@ make_EHelper(cmp) {
   //cmp不存结果，只改变cflags
   //但似乎存了也没问题，反正不会用到 直接存到src里作为中间量
   //复用sub代码，但是src2需要符号扩展
-  rtl_sext(&id_src2->val,&id_src2->val,id_src2->width);
+  /*rtl_sext(&id_src2->val,&id_src2->val,id_src2->width);
   rtl_sub(&t2, &id_src->val, &id_src2->val);
   rtl_sltu(&t3, &id_src->val, &t2);
 
@@ -64,6 +64,23 @@ make_EHelper(cmp) {
   rtl_xor(&t1, &id_src->val, &t2);
   rtl_and(&t0, &t0, &t1);
   rtl_msb(&t0, &t0, id_src->width);
+  rtl_set_OF(&t0);*/
+
+  rtl_sub(&t2, &id_dest->val, &id_src->val);
+  rtl_sltu(&t3, &id_dest->val, &t2);
+
+  operand_write(id_dest, &t2);
+
+  rtl_update_ZFSF(&t2, id_dest->width);
+
+  rtl_sltu(&t0, &id_dest->val, &t2);
+  rtl_or(&t0, &t3, &t0);
+  rtl_set_CF(&t0);
+
+  rtl_xor(&t0, &id_dest->val, &id_src->val);
+  rtl_xor(&t1, &id_dest->val, &t2);
+  rtl_and(&t0, &t0, &t1);
+  rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
 
   print_asm_template2(cmp);
