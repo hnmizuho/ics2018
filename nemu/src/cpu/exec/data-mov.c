@@ -65,6 +65,7 @@ make_EHelper(movsx) {
 
 make_EHelper(movzx) {
   id_dest->width = decoding.is_operand_size_16 ? 2 : 4;
+printf("AA %08x\n",id_src->val);
   operand_write(id_dest, &id_src->val);
   print_asm_template2(movzx);
 }
