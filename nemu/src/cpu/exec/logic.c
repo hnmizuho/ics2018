@@ -1,9 +1,9 @@
 #include "cpu/exec.h"
 
 make_EHelper(test) {
-  rtl_and(&t0,&id_dest->val,&id_src->val);
-  //operand_write(id_dest,&t0); //手册为dest:=src and src2
-  rtl_update_ZFSF(&t0,id_dest->width);
+  rtl_and(&t0,&id_dest->val,&id_src->val);//手册为dest:=src and src2
+  //operand_write(id_dest,&t0); 
+  rtl_update_ZFSF(&t0,id_dest->width); //手册的“操作”一栏没让做，但是需要做
   rtl_set_CF(&tzero);
   rtl_set_OF(&tzero);
   print_asm_template2(test);
