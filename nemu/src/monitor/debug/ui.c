@@ -173,7 +173,8 @@ static int cmd_p(char *args) {
         return 0;
     }
     uint32_t res =  expr(args,success);
-    printf("%d\n",res);
+    printf("10进制：%d\n",res);
+    printf("16进制：0x%08x\n",res);
     return 0;
 }
 static int cmd_w(char *args) {
