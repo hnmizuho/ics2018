@@ -27,6 +27,7 @@ make_EHelper(add);
 make_EHelper(adc); 
 make_EHelper(sbb); 
 make_EHelper(cmp); 
+make_EHelper(dec);
 // logic.c
 make_EHelper(xor); 
 make_EHelper(and); 
