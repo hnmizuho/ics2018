@@ -29,6 +29,7 @@ make_EHelper(sbb);
 make_EHelper(cmp); 
 make_EHelper(dec);
 make_EHelper(inc);
+make_EHelper(imul2);
 // logic.c
 make_EHelper(xor); 
 make_EHelper(and); 
