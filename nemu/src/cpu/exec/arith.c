@@ -53,6 +53,7 @@ make_EHelper(cmp) {
   rtl_sltu(&t3, &id_src->val, &t2);
 printf("dest %08x\n",id_dest->val);
 printf("src %08x\n",id_src->val);
+printf("t2 %08x\n",t2);
   //operand_write(id_dest, &t2);
   rtl_update_ZFSF(&t2, id_dest->width);
 rtl_get_SF(&t0);
