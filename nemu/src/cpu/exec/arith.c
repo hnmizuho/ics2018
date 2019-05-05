@@ -46,7 +46,6 @@ make_EHelper(sub) {
 
 make_EHelper(cmp) {
   //多了符号扩展
-  printf("width %d\n",id_src->width);
   rtl_sext(&id_src->val,&id_src->val,id_src->width);
 
   rtl_sub(&t2, &id_dest->val, &id_src->val);
