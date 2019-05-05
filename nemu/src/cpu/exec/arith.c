@@ -63,6 +63,12 @@ make_EHelper(cmp) {
   rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
 
+rtl_get_ZF(&t0);
+printf("ZF %08x",t0);
+rtl_get_SF(&t0);
+printf("SF %08x",t0);
+rtl_get_OF(&t0);
+printf("OF %08x",t0);
   print_asm_template2(cmp);
 }
 
