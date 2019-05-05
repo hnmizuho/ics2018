@@ -16,8 +16,8 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
   switch (subcode & 0xe) {
     case CC_O:*dest = cpu.eflags.OF == 1 ? 1 : 0;break;
     case CC_NO:*dest = cpu.eflags.OF != 1 ? 1 : 0;break;
-    case CC_B: *dest = cpu.eflags.ZF == 1 ? 1 : 0;break;
-    case CC_NB:*dest = cpu.eflags.ZF == 0 ? 1 : 0;break;
+    case CC_B: *dest = cpu.eflags.CF == 1 ? 1 : 0;break;
+    case CC_NB:*dest = cpu.eflags.CF == 0 ? 1 : 0;break;
     case CC_E:*dest = cpu.eflags.ZF == 1 ? 1 : 0;break;
     case CC_NE:*dest = cpu.eflags.ZF != 1 ? 1 : 0;break;
     case CC_BE:*dest = (cpu.eflags.CF == 1 || cpu.eflags.ZF == 1) ? 1 : 0;break;
