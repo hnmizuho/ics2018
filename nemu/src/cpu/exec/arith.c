@@ -45,6 +45,9 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
+  //多了符号扩展
+  rtl_sext(&id_src->val,&id_src->val,id_src->width);
+
   rtl_sub(&t2, &id_dest->val, &id_src->val);
   rtl_sltu(&t3, &id_dest->val, &t2);
   // ---
