@@ -64,9 +64,9 @@ printf("ZF %08x\n",t0);
   //rtl_sltu(&t0, &id_dest->val, &t2);
   //rtl_or(&t0, &t3, &t0);
   rtl_set_CF(&t3); //before t0 after t3*/
-  rtl_sext(&id_dest->val,&id_dest->val,id_dest->width);
-  rtl_sub(&t2, &id_src->val, &id_dest->val);
-  rtl_update_ZFSF(&t2, id_src->width);//t2=0:zf=1 sf=0
+  rtl_sext(&id_src->val,&id_src->val,id_src->width);
+  rtl_sub(&t2, &id_dest->val, &id_src->val);
+  rtl_update_ZFSF(&t2, id_dest->width);//t2=0:zf=1 sf=0
                                        //t2>0:zf=0 sf=0
                                        //t2<0:zf=0 sf=1
 
