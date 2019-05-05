@@ -48,6 +48,7 @@ make_EHelper(cmp) {
   //cmp不存结果，只改变cflags
   //但似乎存了也没问题，反正不会用到 直接存到src里作为中间量
   //复用sub代码，但是src2需要符号扩展
+/*
   rtl_sext(&id_src->val,&id_src->val,id_src->width);
   rtl_sub(&t2, &id_dest->val, &id_src->val);
   rtl_sltu(&t3, &id_dest->val, &t2);
@@ -62,7 +63,12 @@ rtl_get_ZF(&t0);
 printf("ZF %08x\n",t0);
   //rtl_sltu(&t0, &id_dest->val, &t2);
   //rtl_or(&t0, &t3, &t0);
-  rtl_set_CF(&t3); //before t0 after t3
+  rtl_set_CF(&t3); //before t0 after t3*/
+  rtl_sext(&id_src->val,&id_src->val,id_src->width);
+  rtl_sub(&t2, &id_dest->val, &id_src->val);
+  rtl_update_ZFSF(&t2, id_dest->width);//t2=0:zf=1 sf=0
+                                       //t2>0:zf=0 sf=0
+                                       //t2<0:zf=0 sf=1
 
   rtl_xor(&t0, &id_dest->val, &id_src->val);
   rtl_xor(&t1, &id_dest->val, &t2);
