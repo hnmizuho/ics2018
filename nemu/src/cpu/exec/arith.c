@@ -54,7 +54,8 @@ make_EHelper(cmp) {
 
   //operand_write(id_dest, &t2);
   rtl_update_ZFSF(&t2, id_dest->width);
-
+rtl_get_SF(&t0);
+printf("SF %08x\n",t0);
   //rtl_sltu(&t0, &id_dest->val, &t2);
   //rtl_or(&t0, &t3, &t0);
   rtl_set_CF(&t3); //before t0 after t3
