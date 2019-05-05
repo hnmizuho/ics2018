@@ -69,7 +69,8 @@ printf("ZF %08x\n",t0);
   rtl_update_ZFSF(&t2, id_dest->width);//t2=0:zf=1 sf=0
                                        //t2>0:zf=0 sf=0
                                        //t2<0:zf=0 sf=1
-
+rtl_get_SF(&t0);
+printf("SF %08x\n",t0);
   rtl_xor(&t0, &id_dest->val, &id_src->val);
   rtl_xor(&t1, &id_dest->val, &t2);
   rtl_and(&t0, &t0, &t1);
