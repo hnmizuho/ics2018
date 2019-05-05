@@ -195,6 +195,8 @@ void difftest_step(uint32_t eip) {
       printf("           NEMU: 0x%08x\n",cpu.edi);
   }
   if (diff) {
+    printf("ZF---QEMU:%d NEMU:\n",cpu.eflags.ZF);
+
     nemu_state = NEMU_END;
   }
 }
