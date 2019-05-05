@@ -53,6 +53,7 @@ make_EHelper(shr);
 // special.c
 make_EHelper(nop); 
 
-
-
+// system.c
+make_EHelper(in); 
+make_EHelper(out); 
 
