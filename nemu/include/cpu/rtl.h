@@ -175,9 +175,7 @@ static inline void rtl_neq0(rtlreg_t* dest, const rtlreg_t* src1) {
 static inline void rtl_msb(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- src1[width * 8 - 1]
   // 返回最高有效位，即标志位
-  for(int i=0;i<=width*8-1;i++)
-      printf("%d",src1[i]);
-  rtl_li(dest,src1[width * 8 - 1]); // 装载立即数
+  rtl_shri(dest,src1,width*8-1);
 }
 
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
@@ -190,8 +188,6 @@ static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
 static inline void rtl_update_SF(const rtlreg_t* result, int width) {
   // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
   rtl_msb(&t1,result,width);
-  printf("res %08x\n",*result);
-  printf("t1 %08x\n",t1);
   rtl_set_SF(&t1);
 }
 
