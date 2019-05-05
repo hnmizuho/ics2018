@@ -53,7 +53,7 @@ make_group(gp2,
   /* 0xf6, 0xf7 */
 make_group(gp3,
     EX(test), EMPTY, EX(not), EMPTY,
-    EMPTY, EMPTY, EMPTY, EMPTY)
+    EX(mul), EX(imul1), EX(div), EX(idiv))
 
   /* 0xfe */
 make_group(gp4,
