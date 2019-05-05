@@ -188,6 +188,7 @@ static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
 static inline void rtl_update_SF(const rtlreg_t* result, int width) {
   // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
   rtl_msb(&t1,result,width);
+  printf("\n%d\n",t1);
   rtl_set_SF(&t1);
 }
 
