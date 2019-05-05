@@ -45,7 +45,7 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
-  //多了符号扩展
+  //不需要在这儿符号扩展，因为decode.c SI里读操作数时已经扩展了
   //rtl_sext(&id_src->val,&id_src->val,id_src->width);
 
   rtl_sub(&t2, &id_dest->val, &id_src->val);
