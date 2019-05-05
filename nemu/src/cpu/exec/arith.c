@@ -54,10 +54,10 @@ make_EHelper(cmp) {
 
   //operand_write(id_dest, &t2);
   rtl_update_ZFSF(&t2, id_dest->width);
-rtl_get_SF(&t0);
+/*rtl_get_SF(&t0);
 printf("SF %08x\n",t0);
 rtl_get_ZF(&t0);
-printf("ZF %08x\n",t0);
+printf("ZF %08x\n",t0);*/
   //rtl_sltu(&t0, &id_dest->val, &t2);
   //rtl_or(&t0, &t3, &t0);
   rtl_set_CF(&t3); //before t0 after t3
@@ -67,8 +67,8 @@ printf("ZF %08x\n",t0);
   rtl_and(&t0, &t0, &t1);
   rtl_msb(&t0, &t0, id_dest->width);
   rtl_set_OF(&t0);
-rtl_get_OF(&t0);
-printf("OF %08x\n",t0);
+/*rtl_get_OF(&t0);
+printf("OF %08x\n",t0);*/
   print_asm_template2(cmp);
 }
 
