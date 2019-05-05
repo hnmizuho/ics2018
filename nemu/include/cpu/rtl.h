@@ -176,6 +176,7 @@ static inline void rtl_msb(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- src1[width * 8 - 1]
   // 返回最高有效位，即标志位
   rtl_shri(dest,src1,width*8-1);
+  printf("\nsrc%08x\ndest%d\n",*src1,*dest);
 }
 
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
