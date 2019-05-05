@@ -47,7 +47,6 @@ make_EHelper(sub) {
 make_EHelper(cmp) {
   rtl_sub(&t2, &id_dest->val, &id_src->val);
   rtl_sltu(&t3, &id_dest->val, &t2);
-  // 从sbb删除两行和CF有关的
   // ---
   //operand_write(id_dest, &t2);
 
