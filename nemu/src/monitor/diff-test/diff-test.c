@@ -195,8 +195,12 @@ void difftest_step(uint32_t eip) {
       printf("           NEMU: 0x%08x\n",cpu.edi);
   }
   if (diff) {
-    printf("ZF---QEMU:%d NEMU:\n",cpu.eflags.ZF);
-
+    printf("ZF---NEMU:%d\n",cpu.eflags.ZF);
+    printf("SF---NEMU:%d\n",cpu.eflags.SF);
+    printf("OF---NEMU:%d\n",cpu.eflags.OF);
+    printf("CF---NEMU:%d\n",cpu.eflags.CF);
+    printf("IF---NEMU:%d\n",cpu.eflags.IF);
+    printf("EFLAGS in QEMU:0x%08x\n",r.eflags);
     nemu_state = NEMU_END;
   }
 }
