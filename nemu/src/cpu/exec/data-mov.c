@@ -36,10 +36,11 @@ make_EHelper(leave) {
 
 make_EHelper(cltd) {
   if (decoding.is_operand_size_16) {
-    TODO();
+    //CWD
+    rtl_msb(&t0,&cpu.eax,2);
   }
   else {
-    TODO();
+    //CDQ
   }
 
   print_asm(decoding.is_operand_size_16 ? "cwtl" : "cltd");
