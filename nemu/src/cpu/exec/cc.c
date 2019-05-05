@@ -24,8 +24,8 @@ void rtl_setcc(rtlreg_t* dest, uint8_t subcode) {
     //case cc_NP:*dest = cpu.eflags.PF != 1 ? 1 : 0;break;
     case CC_L:*dest = cpu.eflags.SF != cpu.eflags.OF ? 1 : 0;break;
     case CC_NL:*dest = cpu.eflags.SF == cpu.eflags.OF ? 1 : 0;break;
-    case CC_LE:*dest = ((cpu.eflags.ZF == 1)&&(cpu.eflags.SF != cpu.eflags.OF)) ? 1 : 0;break;
-    case CC_NLE:*dest = ((cpu.eflags.ZF != 1)&&(cpu.eflags.SF == cpu.eflags.OF)) ? 1 : 0;break;
+    case CC_LE:*dest = ((cpu.eflags.ZF == 1)||(cpu.eflags.SF != cpu.eflags.OF)) ? 1 : 0;break;
+    case CC_NLE:*dest = ((cpu.eflags.ZF != 1)||(cpu.eflags.SF == cpu.eflags.OF)) ? 1 : 0;break;
 
     case CC_NE:*dest = cpu.eflags.ZF != 1 ? 1 : 0;break;
     default: panic("should not reach here");
