@@ -194,6 +194,11 @@ void difftest_step(uint32_t eip) {
       printf("Diff: edi  QEMU: 0x%08x\n",r.edi);
       printf("           NEMU: 0x%08x\n",cpu.edi);
   }
+  if(r.eflags != cpu.eflags.val){
+      diff = true;
+      //printf("Diff: edi  QEMU: 0x%08x\n",r.edi);
+      //printf("           NEMU: 0x%08x\n",cpu.edi);
+  }
   if (diff) {
     printf("ZF---NEMU:%d\n",cpu.eflags.ZF);
     printf("SF---NEMU:%d\n",cpu.eflags.SF);
