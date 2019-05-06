@@ -135,6 +135,7 @@ static inline void rtl_not(rtlreg_t* dest) {
   *dest = ~(*dest);
 }
 
+
 static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
   // 实现符号扩展，先逻辑左移再算数右移
@@ -195,5 +196,6 @@ static inline void rtl_update_ZFSF(const rtlreg_t* result, int width) {
   rtl_update_ZF(result, width);
   rtl_update_SF(result, width);
 }
+
 
 #endif

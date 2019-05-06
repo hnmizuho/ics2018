@@ -84,3 +84,20 @@ make_EHelper(not) {
 
   print_asm_template1(not);
 }
+//源代码框架没有这个
+make_EHelper(rol) {
+  t0 = id_src->val;
+  t1 = 1;
+  id_dest->val = id_src->val;
+  for(int i=0;i<t0;i++)
+  {
+      rtl_msb(&t2,&id_dest->val,id_dest->width);
+      rtl_shr(&id_dest->val,&id_dest->val,&t1);
+      id_dest->val += t2;
+      rtl_set_CF(&t2);
+  }
+  if(t0 == 1)
+      rtl_set_OF(&t1);
+
+  print_asm_template1(not);
+}
