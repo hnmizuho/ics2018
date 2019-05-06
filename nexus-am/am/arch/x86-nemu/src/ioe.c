@@ -36,6 +36,8 @@ int _read_key() {
     uint32_t code = _KEY_NONE;
     if(inb(0x64) & 0x1)
         code = inl(0x60);
+    //if(inb(I8042_STATUS_PORT) & I8042_STATUS_HASKEY_MASK)
+    //    code = inl(I8042_DATA_PORT);
     // return _KEY_NONE;
     return code;
 }
