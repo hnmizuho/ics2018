@@ -23,14 +23,11 @@ _Screen _screen = {
 extern void* memcpy(void *, const void *, int);
 
 void _draw_rect(const uint32_t *pixels, int x, int y, int w, int h) {
-  // int i;
-  //for (i = 0; i < _screen.width * _screen.height; i++) {
-  //  fb[i] = i;
-  //}
-  int row,col;
-  for(row = y;row<y+h;row++)
-      for(col = x;col<x+w;col++)
-          fb[col+row*_screen.width] = pixels[(row-y)*col+col-x];
+   int i;
+   for (i = 0; i < _screen.width * _screen.height; i++) {
+    fb[i] = i;
+   }
+  // pixels指定的像素颜色 填充到（x，y）到（x+w，y+h)上
   /*int i;
   for(i=0;i<h;i++)
       memcpy(fb+(y+i)*_screen.width+x,pixels+i*w,w*4);*/
