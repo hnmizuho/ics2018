@@ -108,5 +108,5 @@ make_EHelper(rol) {
       }
   }
 
-  print_asm_template1(rol);
+  print_asm_template2(rol);
 }
