@@ -94,7 +94,7 @@ make_EHelper(rol) {
       rtl_msb(&t2,&id_dest->val,id_dest->width);
       rtl_shl(&id_dest->val,&id_dest->val,&t1); //之前写成shr
       id_dest->val += t2;
-      rtl_set_CF(&t2);
+      //rtl_set_CF(&t2);
   }
   if(t0 == 1)
   {
