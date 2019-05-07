@@ -97,7 +97,11 @@ make_EHelper(rol) {
       rtl_set_CF(&t2);
   }
   //if(t0 == 1)
-      //rtl_set_OF(&t1);
-
+  //    rtl_set_OF(&t1);
+  rtl_xor(&t0, &id_dest->val, &id_src->val); //代码复用 OF
+  rtl_xor(&t1, &id_dest->val, &t2);
+  rtl_and(&t0, &t0, &t1);
+  rtl_msb(&t0, &t0, id_dest->width);
+  rtl_set_OF(&t0);
   print_asm_template1(not);
 }
