@@ -96,9 +96,17 @@ make_EHelper(rol) {
       id_dest->val += t2;
       rtl_set_CF(&t2);
   }
-  t1 = 0;
-  //if(t0 == 1)
-      rtl_set_OF(&t1);
+  if(t0 == 1)
+  {
+      rtl_msb(&t2,&id_dest->val,id_dest->width);
+      rtl_get_CF(&t1);
+      if(t2!=t1)
+          rtl_set_OF(&t0);
+      else{
+          t0 = 0;
+          rtl_set_OF(&t0);
+      }
+  }
   /*rtl_xor(&t0, &id_dest->val, &id_src->val); //代码复用 OF
   rtl_xor(&t1, &id_dest->val, &t2);
   rtl_and(&t0, &t0, &t1);
