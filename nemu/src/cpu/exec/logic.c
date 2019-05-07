@@ -96,8 +96,8 @@ make_EHelper(rol) {
       id_dest->val += t2;
       rtl_set_CF(&t2);
   }
-  if(t0 == 1)
-      rtl_set_OF(&t1);
+  //if(t0 == 1)
+      //rtl_set_OF(&t1);
 
   print_asm_template1(not);
 }
