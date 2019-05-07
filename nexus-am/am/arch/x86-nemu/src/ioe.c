@@ -30,7 +30,7 @@ void _draw_rect(const uint32_t *pixels, int x, int y, int w, int h) {
   // pixels指定的像素颜色 填充到（x，y）到（x+w，y+h)上
   int i;
   for(i=0;i<h;i++)
-      memcpy(fb+(y+i)*_screen.width+x,pixels,w*4);
+      memcpy((void*)fb[(y+i)*_screen.width+x],(void*)pixels[i*w],w*4);
 }
 
 void _draw_sync() {
