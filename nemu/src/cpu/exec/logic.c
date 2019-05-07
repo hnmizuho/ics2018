@@ -86,20 +86,20 @@ make_EHelper(not) {
 }
 //源代码框架没有这个
 make_EHelper(rol) {
-  t0 = id_src->val;
+  t0 = id_src->val; //count
   t1 = 1;
   //id_dest->val = id_src->val;
   for(int i=0;i<t0;i++)
   {
       rtl_msb(&t2,&id_dest->val,id_dest->width);
-      rtl_set_CF(&t2);
+      //rtl_set_CF(&t2);
       rtl_shl(&id_dest->val,&id_dest->val,&t1); //之前写成shr
       id_dest->val += t2;
   }
+  rtl_set_CF(&t2);
   if(t0 == 1)
   {
-      rtl_msb(&t2,&id_dest->val,id_dest->width);
-      rtl_get_CF(&t1);
+      rtl_msb(&t1,&id_dest->val,id_dest->width);
       if(t2!=t1)
           rtl_set_OF(&t0);
       else{
