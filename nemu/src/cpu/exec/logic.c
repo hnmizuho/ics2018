@@ -97,7 +97,7 @@ make_EHelper(rol) {
       id_dest->val += t2;
   }
   rtl_set_CF(&t2);
-  operand_write(id_dest,&id_dest->val);
+  operand_write(id_dest,&id_dest->val); // 之前一直忘了这个！！！
   if(t0 == 1)
   {
       rtl_msb(&t1,&id_dest->val,id_dest->width);
