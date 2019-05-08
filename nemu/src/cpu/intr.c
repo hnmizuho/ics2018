@@ -13,6 +13,8 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
 
   rtl_push(&cpu.cs);
   //rtl_push(&cpu.eip);
+  rtl_push(&ret_addr);
+  
 
 }
 
