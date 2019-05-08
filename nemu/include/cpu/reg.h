@@ -46,8 +46,8 @@ typedef struct {
       }; //这个结构占用32bits
   }eflags;//32bits寄存器
   struct{
-      uint16_t i_limit;
-      uint32_t i_base;
+      uint16_t i_limit;  //IDT数组长度
+      uint32_t i_base; //IDT数组基址
   }idtr;
   uint16_t cs;
 } CPU_state;

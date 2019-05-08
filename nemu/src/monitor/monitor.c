@@ -86,6 +86,8 @@ static inline void restart() {
 
   //eflags 设置初值
   cpu.eflags.val = 0x00000002;
+  //cs 设置初值
+  cpu.cs = 0x0008;
 #ifdef DIFF_TEST
   //设置到和nemu相同
   init_qemu_reg();
