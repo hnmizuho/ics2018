@@ -45,6 +45,11 @@ typedef struct {
           unsigned:20;
       }; //这个结构占用32bits
   }eflags;//32bits寄存器
+  struct{
+      uint16_t i_limit;
+      uint32_t i_base;
+  }idtr;
+  uint16_t cs;
 } CPU_state;
 
 extern CPU_state cpu;
