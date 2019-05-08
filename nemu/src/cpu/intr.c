@@ -19,7 +19,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   rtl_li(&t0,vaddr_read(cpu.idtr.i_base+4*NO,4));
   if((t0 & 0x00008000) == 0)
       assert(0);
-  cpu.eip = t0 & 0x00001111;
+  cpu.eip = t0;
 }
 
 void dev_raise_intr() {
