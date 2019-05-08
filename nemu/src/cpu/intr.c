@@ -15,7 +15,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   rtl_push(&cpu.cs);
   //rtl_push(&cpu.eip);
   rtl_push(&ret_addr);
-  
+  printf("????");
   //cpu.cs = ??
   rtl_li(&t0,vaddr_read(cpu.idtr.i_base,4));
   if((t0 & 0x00008000) == 0)
