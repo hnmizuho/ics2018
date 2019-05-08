@@ -28,7 +28,24 @@ make_EHelper(mov_cr2r) {
 
 make_EHelper(int) {
   //raise_intr(id_dest->val,cpu.eip);
-  raise_intr(id_dest->addr,cpu.eip);
+  //raise_intr(id_dest->addr,cpu.eip);
+
+  rtl_push(&cpu.eflags.val);
+
+  //rtl_li(&t0,1);
+  //rtl_set_IF(&t0);
+
+  rtl_push(&cpu.cs);
+  rtl_push(&cpu.eip);
+  //rtl_push(&ret_addr);
+  
+  //cpu.cs = ??
+  rtl_li(&t0,vaddr_read(cpu.idtr.i_base+4*id_dest->addr,4));
+  if((t0 & 0x00008000) == 0)
+      assert(0);
+  //cpu.eip = ret_addr + (t0 & 0x00001111);
+  rtl_addi(&decoding.jmp_eip,&cpu.eip,t0);
+  decoding.is_jmp = 1;
   print_asm("int %s", id_dest->str);
 
 #ifdef DIFF_TEST
