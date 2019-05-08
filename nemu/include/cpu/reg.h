@@ -46,10 +46,10 @@ typedef struct {
       }; //这个结构占用32bits
   }eflags;//32bits寄存器
   struct{
-      uint16_t i_limit;  //IDT数组长度
+      uint32_t i_limit;  //IDT数组长度 实际为16位 为了方便
       uint32_t i_base; //IDT数组基址
   }idtr;
-  uint16_t cs;
+  uint32_t cs;//实际16位 参照GDB remote protocol client
 } CPU_state;
 
 extern CPU_state cpu;
