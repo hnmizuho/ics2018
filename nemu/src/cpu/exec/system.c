@@ -27,7 +27,7 @@ make_EHelper(mov_cr2r) {
 }
 
 make_EHelper(int) {
-  TODO();
+  
 
   print_asm("int %s", id_dest->str);
 
