@@ -4,7 +4,7 @@ void diff_test_skip_qemu();
 void diff_test_skip_nemu();
 
 make_EHelper(lidt) {
-  rtl_li(&t0,id_dest->addr);
+  rtl_li(&t0,id_dest->val);//
   rtl_li(&cpu.idtr.i_limit,vaddr_read(t0,2));
   rtl_li(&cpu.idtr.i_base,vaddr_read(t0+2,4));
   print_asm_template1(lidt);
