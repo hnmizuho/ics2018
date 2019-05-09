@@ -251,7 +251,12 @@ void exec_wrapper(bool print_flag) {
 
 #ifdef DIFF_TEST
   bool difftest_step(uint32_t);
-  if(difftest_step(eip))
-      printf("%s\n",decoding.p);
+  bool curr_asm = difftest_step(eip);
+  if(curr_asm);
+#endif
+
+#ifdef DEBUG
+  if(curr_asm)
+      printf("%s\n", decoding.asm_buf);
 #endif
 }
