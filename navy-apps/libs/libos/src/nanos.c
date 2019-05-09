@@ -26,7 +26,10 @@ int _open(const char *path, int flags, mode_t mode) {
 }
 
 int _write(int fd, void *buf, size_t count){
-  _exit(SYS_write);
+  //模仿上面给出来的_exit 
+  //_syscall_ 四个参数就是SYSCALL_ARGX！
+  _syscall_(SYS_write, fd, (uintptr_t)buf, count);
+  //_exit(SYS_write);
 }
 
 void *_sbrk(intptr_t increment){
