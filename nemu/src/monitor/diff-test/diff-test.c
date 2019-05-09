@@ -126,13 +126,13 @@ void init_qemu_reg() {
   assert(ok == 1);
 }
 
-void difftest_step(uint32_t eip) {
+bool difftest_step(uint32_t eip) {
   union gdb_regs r;
   bool diff = false;
 
   if (is_skip_nemu) {
     is_skip_nemu = false;
-    return;
+    return false;
   }
 
   if (is_skip_qemu) {
@@ -141,7 +141,7 @@ void difftest_step(uint32_t eip) {
     regcpy_from_nemu(r);
     gdb_setregs(&r);
     is_skip_qemu = false;
-    return;
+    return false;
   }
 
   gdb_si();
@@ -204,4 +204,5 @@ void difftest_step(uint32_t eip) {
     printf("EFLAGS in QEMU:0x%08x\n",r.eflags);
     nemu_state = NEMU_END;
   }
+  return diff;
 }
