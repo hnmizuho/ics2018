@@ -11,10 +11,10 @@ struct _RegSet {
   //int       irq;
   uintptr_t eflags,cs,eip;
   uintptr_t error_code;
-  int       irqs;
+  int       irq;
 
 
-  uintptr_t eax,ecx,edx,ebx,esp,ebp,esi,irq;
+  uintptr_t eax,ecx,edx,ebx,esp,ebp,esi,edi;
   /*uintptr_t edi,esi,ebp,esp,ebx,edx,ecx,eax;
   int       irq;
   uintptr_t error_code,eip,cs,eflags;*/
