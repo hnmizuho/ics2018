@@ -14,8 +14,8 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   //rtl_push(&cpu.eip);
   rtl_push(&ret_addr);
   
-  rtl_li(&t0,vaddr_read(cpu.idtr.i_base+4*NO,4));
-  rtl_li(&t1,vaddr_read(cpu.idtr.i_base+4*NO+4,4));
+  rtl_li(&t0,vaddr_read(cpu.idtr.i_base+8*NO,4));
+  rtl_li(&t1,vaddr_read(cpu.idtr.i_base+8*NO+4,4));
   //cpu.cs = t1 //nemu不必设置
   if((t1 & 0x00008000) == 0)
       assert(0);
