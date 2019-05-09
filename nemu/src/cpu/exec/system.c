@@ -27,7 +27,8 @@ make_EHelper(mov_cr2r) {
 }
 
 make_EHelper(int) {
-  raise_intr(id_dest->val,decoding.seq_eip);
+  //应该push的是调用int之前的，而不是此时的eip
+  raise_intr(id_dest->val,decoding.seq_eip); //不是cpu.eip
   print_asm("int %s", id_dest->str);
 
 #ifdef DIFF_TEST
