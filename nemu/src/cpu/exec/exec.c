@@ -257,6 +257,6 @@ void exec_wrapper(bool print_flag) {
 
 #ifdef DEBUG
   if(curr_asm)
-      printf("%s\n", decoding.asm_buf);
+      printf("error in%s\n", decoding.asm_buf);
 #endif
 }
