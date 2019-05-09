@@ -20,9 +20,9 @@ struct _RegSet {
 };
 
 #define SYSCALL_ARG1(r) r->eax
-#define SYSCALL_ARG2(r) r->ecx
-#define SYSCALL_ARG3(r) r->edx
-#define SYSCALL_ARG4(r) r->ebx
+#define SYSCALL_ARG2(r) r->ebx
+#define SYSCALL_ARG3(r) r->ecx
+#define SYSCALL_ARG4(r) r->edx
 
 #ifdef __cplusplus
 extern "C" {
