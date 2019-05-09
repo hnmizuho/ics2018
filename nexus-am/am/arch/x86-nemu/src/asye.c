@@ -8,7 +8,7 @@ void vecnull();
 
 _RegSet* irq_handle(_RegSet *tf) {
   _RegSet *next = tf;
-
+  
   if (H) {
     _Event ev;
     switch (tf->irq) {
