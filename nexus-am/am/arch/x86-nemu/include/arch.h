@@ -14,7 +14,7 @@ struct _RegSet {
   int       irqs;
 
 
-  uintptr_t eax,ecx,edx,ebx,esp,ebp,irq,edi;
+  uintptr_t eax,ecx,edx,ebx,esp,ebp,esi,irq;
   /*uintptr_t edi,esi,ebp,esp,ebx,edx,ecx,eax;
   int       irq;
   uintptr_t error_code,eip,cs,eflags;*/
