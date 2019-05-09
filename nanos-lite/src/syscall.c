@@ -6,7 +6,7 @@ static inline _RegSet* sys_none(_RegSet *r){
   return NULL;
 }
 static inline _RegSet* sys_exit(_RegSet *r){
-  _halt(SYSCALL_ARG1(r)); 
+  _halt(SYSCALL_ARG2(r)); 
   return NULL;
 }
 _RegSet* do_syscall(_RegSet *r) {
