@@ -33,11 +33,11 @@ static inline _RegSet* sys_write(_RegSet *r){
 _RegSet* do_syscall(_RegSet *r) {
   uintptr_t a[4];
   a[0] = SYSCALL_ARG1(r);
-
+printf("s");
   switch (a[0]) {
     case SYS_none:return sys_none(r);
     case SYS_exit:return sys_exit(r);
-    case SYS_write:printf("s");return sys_write(r);
+    case SYS_write:return sys_write(r);
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 
