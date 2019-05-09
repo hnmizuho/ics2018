@@ -27,7 +27,7 @@ make_EHelper(cltd);
 make_EHelper(cwtl);
 make_EHelper(leave);
 make_EHelper(pusha);
-
+make_EHelper(popa);
 // arith.c
 make_EHelper(sub); 
 make_EHelper(add); 
@@ -61,3 +61,4 @@ make_EHelper(in);
 make_EHelper(out); 
 make_EHelper(lidt);
 make_EHelper(int); 
+make_EHelper(iret); 

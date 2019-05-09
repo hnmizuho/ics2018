@@ -19,7 +19,7 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   //cpu.cs = t1 //nemu不必设置
   if((t1 & 0x00008000) == 0)
       assert(0);
-
+  //非直接设置eip
   decoding.jmp_eip = (t0&0xffff)|(t1&0xffff0000);
   decoding.is_jmp = 1;
 }
