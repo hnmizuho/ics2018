@@ -2,7 +2,7 @@
 #include "syscall.h"
 
 static inline _RegSet* sys_none(_RegSet *r){
-  SYSCALL_ARG1(r) = 1; //约定系统调用返回值存于此，即eax
+  //SYSCALL_ARG1(r) = 1; //约定系统调用返回值存于此，即eax
   return NULL;
 }
 
