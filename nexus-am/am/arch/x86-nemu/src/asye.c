@@ -1,6 +1,6 @@
 #include <am.h>
 #include <x86.h>
-#include <stdio.h>
+
 static _RegSet* (*H)(_Event, _RegSet*) = NULL;
 
 void vecsys();
@@ -11,7 +11,6 @@ _RegSet* irq_handle(_RegSet *tf) {
 
   if (H) {
     _Event ev;
-    //printf("%d",tf->eax);
     switch (tf->irq) {
       case 0x80: ev.event = _EVENT_SYSCALL; break;
       default: ev.event = _EVENT_ERROR; break;
