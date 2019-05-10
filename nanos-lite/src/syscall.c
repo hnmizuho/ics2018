@@ -19,8 +19,13 @@ static inline _RegSet* sys_write(_RegSet *r){
       for(int i = 0; i < len; i++) {
           _putc(buf[i]);
       }
+      //根据man 返回len
       SYSCALL_ARG1(r) = SYSCALL_ARG4(r);
   }
+  return NULL;
+}
+static inline _RegSet* sys_brk(_RegSet *r) {
+  SYSCALL_ARG1(r) = 0;
   return NULL;
 }
 _RegSet* do_syscall(_RegSet *r) {
