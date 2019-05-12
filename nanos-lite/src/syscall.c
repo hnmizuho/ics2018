@@ -14,7 +14,7 @@ static inline _RegSet* sys_write(_RegSet *r){
   int fd = (int)SYSCALL_ARG2(r);
   char *buf = (char *)SYSCALL_ARG3(r);
   int len = (int)SYSCALL_ARG4(r);
-  //Log("?");
+  Log("?");
   if(fd == 1 || fd == 2){
       for(int i = 0; i < len; i++) {
           _putc(buf[i]);
