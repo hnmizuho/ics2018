@@ -41,11 +41,12 @@ void *_sbrk(intptr_t increment){
       brk = new_brk;
       return (void*)old_brk;
   }*/
+  Log("s");
   if(_syscall_(SYS_brk,0,0,0) == 0){
       brk += increment;
       return (void*)old_brk;
   }
-  return (void *)old_brk;
+  return (void *)-1;
 }
 
 int _read(int fd, void *buf, size_t count) {
