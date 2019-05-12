@@ -31,8 +31,16 @@ int _write(int fd, void *buf, size_t count){
   _syscall_(SYS_write, fd, (uintptr_t)buf, count);
   //_exit(SYS_write);
 }
-
+extern char _end;
+static intptr_t brk = (intptr_t)&_end;
 void *_sbrk(intptr_t increment){
+  intptr_t old_brk = brk;
+  intptr_t new_brk = old_brk + increment;
+  intptr_t tmp = _syscall_(SYS_brk,new_brk,0,0);
+  if(tmp == 0){
+      brk = new_brk;
+      return (void*)old_brk;
+  }
   return (void *)-1;
 }
 
