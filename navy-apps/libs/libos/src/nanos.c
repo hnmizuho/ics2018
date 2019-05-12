@@ -45,7 +45,7 @@ void *_sbrk(intptr_t increment){
       brk += increment;
       return (void*)old_brk;
   }
-  return (void *)-1;
+  else return (void *)-1;
 }
 
 int _read(int fd, void *buf, size_t count) {
