@@ -26,6 +26,7 @@ static inline _RegSet* sys_write(_RegSet *r){
 }
 static inline _RegSet* sys_brk(_RegSet *r) {
   //总是返回0，表示堆区大小总是调整成功
+  Log("!");
   SYSCALL_ARG1(r) = 0;
   return NULL;
 }
