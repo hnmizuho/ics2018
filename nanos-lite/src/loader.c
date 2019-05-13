@@ -10,6 +10,7 @@ int fs_open(const char *pathname, int flags, int mode);
 size_t fs_filesz(int fd);
 ssize_t fs_read(int fd, void *buf, size_t len);
 int fs_close(int fd);
+
 uintptr_t loader(_Protect *as, const char *filename) {
   /*size_t size = get_ramdisk_size();
   void * buff = NULL;

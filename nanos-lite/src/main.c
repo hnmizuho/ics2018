@@ -30,7 +30,7 @@ int main() {
 
   init_fs();
 
-  uint32_t entry = loader(NULL,"/bin/hello");
+  uint32_t entry = loader(NULL,"/bin/dummy");
   ((void (*)(void))entry)();
   //load_prog("/bin/hello");
 
