@@ -30,7 +30,7 @@ int main() {
 
   init_fs();
 
-  uint32_t entry = loader(NULL,"/bin/litenes");
+  uint32_t entry = loader(NULL,"/bin/videotest");
   ((void (*)(void))entry)();
 
   panic("Should not reach here");
