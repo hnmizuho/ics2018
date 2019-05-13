@@ -6,6 +6,7 @@ ssize_t fs_read(int fd, void *buf, size_t len);
 ssize_t fs_write(int fd, const void *buf, size_t len);
 off_t fs_lseek(int fd, off_t offset, int whence);
 int fs_close(int fd);
+
 static inline _RegSet* sys_none(_RegSet *r){
   SYSCALL_ARG1(r) = 1; //约定系统调用返回值存于此，即eax
   return NULL;

@@ -122,19 +122,19 @@ ssize_t fs_write(int fd, const void *buf, size_t len) {
 
 off_t fs_lseek(int fd, off_t offset, int whence) {
 	off_t result = -1;
-
-	/*switch(whence) {
+	// fs.h
+	switch(whence) {
 		case SEEK_SET:
 			if (offset >= 0 && offset <= file_table[fd].size) {
 				file_table[fd].open_offset = offset;
-				result = file_table[fd].open_offset = offset;
+				//result = file_table[fd].open_offset = offset;
+				result = file_table[fd].open_offset;
 				//Log("!");
 			}
 			//Log("!");
 			break;
 		case SEEK_CUR:
-			if ((offset + file_table[fd].open_offset >= 0) && 
-					(offset + file_table[fd].open_offset <= file_table[fd].size)) {
+			if ((offset + file_table[fd].open_offset >= 0) && (offset + file_table[fd].open_offset <= file_table[fd].size)) {
 				file_table[fd].open_offset += offset;
 				result = file_table[fd].open_offset;
 			}
@@ -143,7 +143,7 @@ off_t fs_lseek(int fd, off_t offset, int whence) {
 			file_table[fd].open_offset = file_table[fd].size + offset;
 			result = file_table[fd].open_offset;
 			break;
-	}*/
+	}
 	
 	return result;
 }
