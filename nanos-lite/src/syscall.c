@@ -76,7 +76,10 @@ _RegSet* do_syscall(_RegSet *r) {
     case SYS_exit:return sys_exit(r);
     case SYS_write:return sys_write(r);
     case SYS_brk:return sys_brk(r);
-    
+    case SYS_open:return sys_open(r);
+    case SYS_read:return sys_read(r);
+    case SYS_close:return sys_close(r);
+    case SYS_lseek:return sys_lseek(r);
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 
