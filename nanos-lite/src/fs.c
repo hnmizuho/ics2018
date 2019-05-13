@@ -60,7 +60,7 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
 		case FD_FB:
 			Log("in the fs_read fd_fb\n");
 			break;
-		/*case FD_EVENTS:
+		case FD_EVENTS:
 			len = events_read((void *)buf, len);
 			break;
 		case FD_DISPINFO:
@@ -70,7 +70,7 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
 				len = file_table[fd].size - file_table[fd].open_offset;
 			dispinfo_read(buf, file_table[fd].open_offset, len);
 			file_table[fd].open_offset += len;	
-			break;*/
+			break;
 		default:
 			//偏移量不可以超过文件边界
 			if(file_table[fd].open_offset >= fs_size || len == 0)
@@ -95,12 +95,12 @@ ssize_t fs_write(int fd, const void *buf, size_t len) {
 				_putc(((char*)buf)[i]);
 			}
 			break;
-		/*case FD_FB:
+		case FD_FB:
 			// write to frame buffer 显存
 			// device.c:fb_write buff中len字节输出到屏幕上offest处
 			fb_write(buf, file_table[fd].open_offset, len);
 			file_table[fd].open_offset += len;
-			break;*/
+			break;
 		default:
 			// write to ramdisk
 			if(file_table[fd].open_offset >= fs_size || len == 0)
