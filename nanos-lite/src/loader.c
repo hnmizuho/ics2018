@@ -8,6 +8,7 @@ uintptr_t loader(_Protect *as, const char *filename) {
   void * buff = NULL;
   Log("------------------------");
   ramdisk_read(buff,0,size); 
+  Log("------------------------");
   memcpy(DEFAULT_ENTRY,buff,size); //之前误用memset
   return (uintptr_t)DEFAULT_ENTRY;
 }
