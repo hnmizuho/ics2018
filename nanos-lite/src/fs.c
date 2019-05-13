@@ -103,7 +103,7 @@ ssize_t fs_write(int fd, const void *buf, size_t len) {
 			break;
 		default:
 			// write to ramdisk
-			if(file_table[fd].open_offset >= fs_size || len == 0)
+			if(file_table[fd].open_offset >= fs_size)
 				return 0;	
 			if(file_table[fd].open_offset + len > fs_size)
 				len = fs_size - file_table[fd].open_offset;
