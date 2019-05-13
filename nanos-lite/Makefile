@@ -7,7 +7,7 @@ FSIMG_PATH = $(NAVY_HOME)/fsimg
 RAMDISK_FILE = build/ramdisk.img
 
 OBJCOPY_FLAG = -S --set-section-flags .bss=alloc,contents -O binary
-OBJCOPY_FILE = $(NAVY_HOME)/tests/hello/build/hello-x86
+OBJCOPY_FILE = $(NAVY_HOME)/tests/text/build/text-x86
 
 .PHONY: update update-ramdisk-objcopy update-ramdisk-fsimg update-fsimg
 
