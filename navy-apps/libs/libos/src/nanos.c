@@ -58,6 +58,7 @@ int _close(int fd) {
 }
 
 off_t _lseek(int fd, off_t offset, int whence) {
+  Log("------------------------");
   //_exit(SYS_lseek);
   return _syscall_(SYS_lseek, (uintptr_t)fd, (uintptr_t)offset, (uintptr_t)whence);
 }
