@@ -42,6 +42,7 @@ static inline _RegSet* sys_brk(_RegSet *r) {
   return NULL;
 }
 static inline _RegSet* sys_open(_RegSet *r) {
+  Log("!");
   const char* pathname = (const char*)SYSCALL_ARG2(r);
   int flags = (int)SYSCALL_ARG3(r);
   int mode = (int)SYSCALL_ARG4(r);
