@@ -23,7 +23,7 @@ uintptr_t loader(_Protect *as, const char *filename) {
 
   Log("Load [%d] %s with size: %d", fd, filename, bytes);
 
+  fs_read(fd,DEFAULT_ENTRY,bytes);
   fs_close(fd);
-Log("ssssssssssss");
   return (uintptr_t)DEFAULT_ENTRY;
 }
