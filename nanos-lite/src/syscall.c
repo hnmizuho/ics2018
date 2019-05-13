@@ -17,7 +17,7 @@ static inline _RegSet* sys_exit(_RegSet *r){
   return NULL;
 }
 static inline _RegSet* sys_write(_RegSet *r){
-  int fd = (int)SYSCALL_ARG2(r);
+  /*int fd = (int)SYSCALL_ARG2(r);
   char *buf = (char *)SYSCALL_ARG3(r);
   int len = (int)SYSCALL_ARG4(r);
   //Log("?");
@@ -28,8 +28,12 @@ static inline _RegSet* sys_write(_RegSet *r){
       //根据man 返回len
       SYSCALL_ARG1(r) = SYSCALL_ARG4(r);
   }
+  return NULL;*/
+  int fd = (int)SYSCALL_ARG2(r);
+  char *buf = (char *)SYSCALL_ARG3(r);
+  int len = (int)SYSCALL_ARG4(r);
+  SYSCALL_ARG1(r) = fs_write(fd,buf,len);
   return NULL;
-
 }
 static inline _RegSet* sys_brk(_RegSet *r) {
   //总是返回0，表示堆区大小总是调整成功
