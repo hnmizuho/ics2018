@@ -9,9 +9,10 @@ PCB *current = NULL;
 uintptr_t loader(_Protect *as, const char *filename);
 
 void load_prog(const char *filename) {
+  Log("------------------------");
   int i = nr_proc ++;
   _protect(&pcb[i].as);
-
+  Log("------------------------");
   uintptr_t entry = loader(&pcb[i].as, filename);
   Log("------------------------");
   // TODO: remove the following three lines after you have implemented _umake()
