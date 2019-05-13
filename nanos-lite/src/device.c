@@ -22,7 +22,6 @@ size_t events_read(void *buf, size_t len) {
 		sprintf(buf, "t %d\n", t);
 	}
 	else {
-		//Log("I am here~\n");
 		sprintf(buf, "%s %s\n", down ? "kd" : "ku", keyname[key]);
 	}
 	return strlen(buf);
