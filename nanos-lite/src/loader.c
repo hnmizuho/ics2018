@@ -19,19 +19,9 @@ uintptr_t loader(_Protect *as, const char *filename) {
   //后来才知道，ramdisk_read已经memcpy了，上一句无用功
   return (uintptr_t)DEFAULT_ENTRY;*/
   int fd = fs_open(filename, 0, 0);
-  size_t nbyte = fs_filesz(fd);
-  void *pa;
-  void *va;
+  size_t bytes = fs_filesz(fd);
 
-  Log("loaded: [%d]%s size:%d", fd, filename, nbyte);
-
-  void *end = DEFAULT_ENTRY + nbyte;
-  for (va = DEFAULT_ENTRY; va < end; va += PGSIZE) {
-	  pa = new_page();
-	  Log("Map va to pa: 0x%08x to 0x%08x", va, pa);
-	  _map(as, va, pa);
-  	  fs_read(fd, pa, (end - va) < PGSIZE ? (end - va) : PGSIZE);
-  }
+  Log("Load [%d]%s with size: %d", fd, filename, bytes);
 
   fs_close(fd);
   return (uintptr_t)DEFAULT_ENTRY;
