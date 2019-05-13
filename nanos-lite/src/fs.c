@@ -91,7 +91,7 @@ ssize_t fs_write(int fd, const void *buf, size_t len) {
 	ssize_t fs_size = fs_filesz(fd);
 	Log("in the write, fd = %d, file size = %d, len = %d, file open_offset = %d\n", fd, fs_size, len, file_table[fd].open_offset);
 	switch(fd) {
-		/*case FD_STDOUT:
+		case FD_STDOUT:
 		case FD_STDERR:
 			// call _putc()
 			// 串口已被抽象成stdout stderr
@@ -99,7 +99,7 @@ ssize_t fs_write(int fd, const void *buf, size_t len) {
 				_putc(((char*)buf)[i]);
 			}
 			break;
-		case FD_FB:
+		/*case FD_FB:
 			// write to frame buffer 显存
 			// device.c:fb_write buff中len字节输出到屏幕上offest处
 			fb_write(buf, file_table[fd].open_offset, len);
