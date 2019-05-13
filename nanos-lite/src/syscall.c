@@ -1,6 +1,11 @@
 #include "common.h"
 #include "syscall.h"
 
+int fs_open(const char *pathname, int flags, int mode);
+ssize_t fs_read(int fd, void *buf, size_t len);
+ssize_t fs_write(int fd, const void *buf, size_t len);
+off_t fs_lseek(int fd, off_t offset, int whence);
+int fs_close(int fd);
 static inline _RegSet* sys_none(_RegSet *r){
   SYSCALL_ARG1(r) = 1; //约定系统调用返回值存于此，即eax
   return NULL;
@@ -56,9 +61,9 @@ static inline _RegSet* sys_close(_RegSet *r) {
 }
 static inline _RegSet* sys_lseek(_RegSet *r) {
   int fd = (int)SYSCALL_ARG2(r);
-  off_t offest = (off_t)SYSCALL_ARG3(r);
+  off_t offset = (off_t)SYSCALL_ARG3(r);
   int whence = (int)SYSCALL_ARG4(r);
-  SYSCALL_ARG1(r) = fs_read(fd,buf,len);
+  SYSCALL_ARG1(r) = fs_lseek(fd,offset,whence);
   return NULL;
 }
 _RegSet* do_syscall(_RegSet *r) {
