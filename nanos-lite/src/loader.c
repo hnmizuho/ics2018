@@ -21,8 +21,9 @@ uintptr_t loader(_Protect *as, const char *filename) {
   int fd = fs_open(filename, 0, 0);
   size_t bytes = fs_filesz(fd);
 
-  Log("Load [%d]%s with size: %d", fd, filename, bytes);
+  Log("Load [%d] %s with size: %d", fd, filename, bytes);
 
   fs_close(fd);
+Log("ssssssssssss");
   return (uintptr_t)DEFAULT_ENTRY;
 }
