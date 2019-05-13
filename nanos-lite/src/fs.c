@@ -40,8 +40,7 @@ size_t fs_filesz(int fd) {
 
 int fs_open(const char *pathname, int flags, int mode) {
 	//可读写所有文件，故忽略flags mode
-	Log("Total files: %d", NR_FILES);
-	Log("Pathname %s", pathname);
+	Log("Pathname: %s", pathname);
 	int i;
 	for (i = 0; i < NR_FILES; i++) {
 		//printf("file name: %s\n", file_table[i].name);
