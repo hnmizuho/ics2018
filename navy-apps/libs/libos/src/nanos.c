@@ -22,6 +22,7 @@ void _exit(int status) {
 }
 
 int _open(const char *path, int flags, mode_t mode) {
+  Log("------------------------");
   //_exit(SYS_open);
   return _syscall_(SYS_open, (uintptr_t)path, (uintptr_t)flags, (uintptr_t)mode);
 }
@@ -45,11 +46,13 @@ void *_sbrk(intptr_t increment){
 }
 
 int _read(int fd, void *buf, size_t count) {
+  Log("------------------------");
   //_exit(SYS_read);
   return _syscall_(SYS_read, (uintptr_t)fd, (uintptr_t)buf, (uintptr_t)count);
 }
 
 int _close(int fd) {
+  Log("------------------------");
   return _syscall_(SYS_close, (uintptr_t)fd, 0, 0);
   //_exit(SYS_close);
 }
