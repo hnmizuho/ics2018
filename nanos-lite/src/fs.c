@@ -31,7 +31,7 @@ extern size_t events_read(void *buf, size_t len);
 
 void init_fs() {
   // TODO: initialize the size of /dev/fb
-  //file_table[FD_FB].size = _screen.height * _screen.width * 4;
+  file_table[FD_FB].size = _screen.height * _screen.width * 4;
 }
 
 size_t fs_filesz(int fd) {
