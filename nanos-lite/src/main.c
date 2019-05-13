@@ -32,7 +32,7 @@ int main() {
 
   //uint32_t entry = loader(NULL, NULL);
   //((void (*)(void))entry)();
-  load_prog("/bin/text2");
+  load_prog("/bin/hello");
 
   panic("Should not reach here");
 }
