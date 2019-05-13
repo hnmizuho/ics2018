@@ -6,6 +6,7 @@ extern size_t get_ramdisk_size();
 uintptr_t loader(_Protect *as, const char *filename) {
   size_t size = get_ramdisk_size();
   void * buff = NULL;
+  Log("------------------------");
   ramdisk_read(buff,0,size); 
   memcpy(DEFAULT_ENTRY,buff,size); //之前误用memset
   return (uintptr_t)DEFAULT_ENTRY;
