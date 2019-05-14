@@ -34,8 +34,8 @@ void dispinfo_read(void *buf, off_t offset, size_t len) {
 }
 
 void fb_write(const void *buf, off_t offset, size_t len) {
-	int row = (offset/2)/_screen.width;
-	int col = (offset/2)%_screen.width;
+	int row = (offset/8)/_screen.width;
+	int col = (offset/8)%_screen.width;
 	_draw_rect(buf,col,row,len/4,1);
 }
 
