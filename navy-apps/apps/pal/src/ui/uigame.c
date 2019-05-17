@@ -113,8 +113,6 @@ PAL_OpeningMenu(
          //
          // Start a new game
          //
-         printf("fuck\n");
-		 Log("fuck\n");
          wItemSelected = 0;
          
          break;

@@ -295,7 +295,7 @@ TerminateOnError(
    va_end(argptr);
 
    fprintf(stderr, "\nFATAL ERROR: %s\n", string);
-   PAL_Shutdown();
+   //PAL_Shutdown();
    exit(255);
 }
 
