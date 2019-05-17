@@ -35,7 +35,7 @@ make_EHelper(inv) {
 make_EHelper(nemu_trap) {
   print_asm("nemu trap (eax = %d)", cpu.eax);
 
-  printf("\33[1;31mnemu: sHIT %s TRAP\33[0m at eip = 0x%08x\n\n",
+  printf("\33[1;31mnemu: HIT %s TRAP\33[0m at eip = 0x%08x\n\n",
       (cpu.eax == 0 ? "GOOD" : "BAD"), cpu.eip);
   nemu_state = NEMU_END;
 
