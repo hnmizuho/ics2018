@@ -24,7 +24,7 @@ size_t events_read(void *buf, size_t len) {
 		sprintf(buf, "%s %s\n", down ? "kd" : "ku", keyname[key]);
 		Log("Get key: %d %s %s\n", key, keyname[key], down ? "down" : "up");
 	}
-	return strlen(buf)-1;
+	return strlen(buf)-1;//?? strlen(buf)
 }
 
 static char dispinfo[128] __attribute__((used));
