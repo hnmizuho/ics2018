@@ -57,14 +57,14 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
 	//Log("in the read, fd = %d, file size = %d, len = %d, file open_offset = %d\n", fd, fs_size, len, file_table[fd].open_offset);
 	switch(fd) {
 		case FD_STDOUT:
-		case FD_FB:
-			Log("in the fs_read fd_fb\n");
-			break;
+		case FD_STDERR:
+		case FD_STDIN:
+			return 0;
 		case FD_EVENTS:
 			len = events_read((void *)buf, len);
 			break;
 		case FD_DISPINFO:
-			if (file_table[fd].open_offset >= file_table[fd].size)
+			if (file_table[fd].open_offset >= file_table[fd].size) // == ??
 				return 0;
 			if (file_table[fd].open_offset + len > file_table[fd].size)
 				len = file_table[fd].size - file_table[fd].open_offset;
@@ -73,7 +73,7 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
 			break;
 		default:
 			//偏移量不可以超过文件边界
-			if(file_table[fd].open_offset >= fs_size || len == 0)
+			if(file_table[fd].open_offset >= fs_size || len == 0) //file_table[fd].open_offset == fs_size ???
 				return 0;
 			if(file_table[fd].open_offset + len > fs_size)
 				len = fs_size - file_table[fd].open_offset;
