@@ -114,6 +114,7 @@ PAL_OpeningMenu(
          // Start a new game
          //
          wItemSelected = 0;
+         printf("fuck\n");
          break;
       }
       else
