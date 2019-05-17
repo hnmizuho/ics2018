@@ -185,8 +185,8 @@ static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   // 惨重教训 用的上width
   //rtl_eq0(&t1,result);
   //rtl_set_ZF(&t1);
-  //t1=(*result & (~0u >> ((4 - width) << 3)));
-  rtl_eq0(&t1,result);
+  t1=(*result & (~0u >> ((4 - width) << 3)));
+  rtl_eq0(&t1,&t1);
   rtl_set_ZF(&t1);
 }
 
