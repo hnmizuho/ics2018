@@ -43,6 +43,8 @@ static int cmd_x(char *args);
 static int cmd_p(char *args);
 static int cmd_w(char *args);
 static int cmd_d(char *args);
+static int cmd_de(char *args);
+static int cmd_at(char *args);
 static struct {
   char *name;
   char *description;
@@ -57,6 +59,8 @@ static struct {
   { "p", "Expression evaluation", cmd_p },
   { "w", "Set watchpoint", cmd_w },
   { "d", "Delete watchpoint", cmd_d },
+  { "detach", "detach DUT", cmd_de },
+  { "attach", "attach DUT", cmd_at },
   /* TODO: Add more commands */
 
 };
@@ -202,6 +206,15 @@ static int cmd_d(char *args) {
     printf("Free watchpoint %d\n",N);
     return 0;
 }
+static int cmd_de(char *args) {
+
+    return 0;
+}
+static int cmd_at(char *args) {
+
+    return 0;
+}
+
 void ui_mainloop(int is_batch_mode) {
   if (is_batch_mode) {
     cmd_c(NULL);
