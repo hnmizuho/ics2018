@@ -186,7 +186,7 @@ static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   //rtl_eq0(&t1,result);
   //rtl_set_ZF(&t1);
   t1=(*result & (~0u >> ((4 - width) << 3)));
-  rtl_eq0(&t1,(rtlreg_t*)(3));
+  rtl_eq0(&t1,&t1);
   rtl_set_ZF(&t1);
 }
 
