@@ -86,7 +86,7 @@ make_EHelper(not) {
 }
 //源代码框架没有这个
 make_EHelper(rol) {
-  t0 = id_src->val; //count
+  /*t0 = id_src->val; //count
   t1 = 1;
   //id_dest->val = id_src->val;
   for(int i=0;i<t0;i++)
@@ -107,7 +107,11 @@ make_EHelper(rol) {
           t0 = 0;
           rtl_set_OF(&t0);
       }
-  }
+  }*/
+	rtl_shri(&t2, &id_dest->val, id_dest->width * 8 - id_src->val);
+	rtl_shl(&t3, &id_dest->val, &id_src->val);
+	rtl_or(&t1, &t2, &t3);
+	operand_write(id_dest, &t1);
 
   print_asm_template2(rol);
 }
