@@ -183,12 +183,9 @@ static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
   // 判断结果是否为零，即result的0到width*8-1位是否全0，实际上用不上width
 
-  //rtl_eq0(&t1,result);
-  //rtl_set_ZF(&t1);
-    t1 = 0;
-	if ((*result & (~0u >> ((4 - width) << 3))) == 0)
-		t1 = 1;
-	rtl_set_ZF(&t0);
+  rtl_eq0(&t1,result);
+  rtl_set_ZF(&t1);
+
 }
 
 static inline void rtl_update_SF(const rtlreg_t* result, int width) {
