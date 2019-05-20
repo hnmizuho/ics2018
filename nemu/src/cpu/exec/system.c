@@ -15,10 +15,10 @@ make_EHelper(mov_r2cr) {
   //只添加了0 3
   switch (id_dest->reg) {
 	case 0:
-		cpu.cr0 = id_src->val;
+		cpu.cr0.val = id_src->val;
 		break;
 	case 3:
-		cpu.cr3 = id_src->val;
+		cpu.cr3.val = id_src->val;
 		break;
 	default:
 		Assert(0, "Shoule reach here for NO cr%d", id_dest->reg);
@@ -31,10 +31,10 @@ make_EHelper(mov_r2cr) {
 make_EHelper(mov_cr2r) {
   switch (id_src->reg) {
 	case 0:
-		operand_write(id_dest, &cpu.cr0);
+		operand_write(id_dest, &cpu.cr0.val);
 		break;
 	case 3:
-		operand_write(id_dest, &cpu.cr3);
+		operand_write(id_dest, &cpu.cr3.val);
 		break;
 	default:
 		Assert(0, "Shoule reach here for NO cr%d", id_dest->reg);

@@ -2,7 +2,7 @@
 #define __REG_H__
 
 #include "common.h"
-
+#include "memory/mmu.h"
 enum { R_EAX, R_ECX, R_EDX, R_EBX, R_ESP, R_EBP, R_ESI, R_EDI };
 enum { R_AX, R_CX, R_DX, R_BX, R_SP, R_BP, R_SI, R_DI };
 enum { R_AL, R_CL, R_DL, R_BL, R_AH, R_CH, R_DH, R_BH };
@@ -52,7 +52,7 @@ typedef struct {
   }idtr;
   uint32_t cs;//实际16位 参照GDB remote protocol client
 
-  union{
+  /*union{
       uint32_t cr0;
       struct{
           uint32_t PE:1;
@@ -64,7 +64,9 @@ typedef struct {
           uint32_t PG:1;
       }; 
   };
-  uint32_t cr3;
+  uint32_t cr3;*/
+  CR0 cr0;
+  CR3 cr3;
 
   bool INTR;
 

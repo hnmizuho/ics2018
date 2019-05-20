@@ -35,6 +35,7 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
 }*/
 paddr_t page_translate(vaddr_t addr, bool w1r0) {
   //aka page_walk
+if(cpu.cr0.protect_enable);
 return addr;
 }
 
