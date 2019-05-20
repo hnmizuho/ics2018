@@ -26,10 +26,34 @@ void paddr_write(paddr_t addr, int len, uint32_t data) {
       memcpy(guest_to_host(addr), &data, len);
 }
 
-uint32_t vaddr_read(vaddr_t addr, int len) {
+/*uint32_t vaddr_read(vaddr_t addr, int len) {
   return paddr_read(addr, len);
 }
 
 void vaddr_write(vaddr_t addr, int len, uint32_t data) {
   paddr_write(addr, len, data);
+}*/
+paddr_t page_translate(vaddr_t addr, bool w1r0) {
+  //aka page_walk
+return addr;
+}
+
+uint32_t vaddr_read(vaddr_t addr, int len) {
+  if ((((addr ^ (addr + len)) & 0x003ff000) != 0) && (((addr + len) & 0x00000fff) != 0)) {
+	//data cross the page boundary
+	assert(0);
+  } else {
+    paddr_t paddr = page_translate(addr, false);
+    return paddr_read(paddr, len);
+  }
+}
+
+void vaddr_write(vaddr_t addr, int len, uint32_t data) {
+  if ((((addr ^ (addr + len)) & 0x003ff000) != 0) && (((addr + len) & 0x00000fff) != 0)) {
+	//data cross the page boundary
+	assert(0);
+  } else {
+    paddr_t paddr = page_translate(addr, true);
+    paddr_write(paddr, len, data);
+  }
 }
