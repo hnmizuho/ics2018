@@ -78,15 +78,14 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 }
 
 void vaddr_write(vaddr_t addr, int len, uint32_t data) {
- paddr_t paddr;
   if ((((addr) + (len) - 1) & ~PAGE_MASK) != ((addr) & ~PAGE_MASK)) {
 	//data cross the page boundary
-	  for (int i = 0; i < len; i++) {
-	     paddr = page_translate(addr, true);
-	      paddr_write(paddr, 1, data);
-	      data >>= 8;
-	      addr++;
-	    }
+	for(int i=0;i<=len / (4096+1);i++){
+		paddr_t paddr = page_translate(addr,true);
+		paddr_write(paddr,4096,data);
+		data >>= 8;
+		addr += 4096;
+	}
 	//assert(0);
   } else {
     paddr_t paddr = page_translate(addr, true);
