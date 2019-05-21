@@ -55,7 +55,7 @@ paddr_t page_translate(vaddr_t addr, bool w1r0) {
 	    assert(pde.present);
 	    pde.accessed = 1;
 
-	    pgtab = (PTE *)(pde.page_frame << 12);  //页目录存放20位的基址作为页表入口
+	    pgtab = (PTE *)(PTE_ADDR(pde.val));  //页目录存放20位的基址作为页表入口
 	    pte.val = paddr_read((paddr_t)&pgtab[PTX(addr)], 4);
 	    assert(pte.present);
 	    pte.accessed = 1;
