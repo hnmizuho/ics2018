@@ -27,9 +27,10 @@ void load_prog(const char *filename) {
 _RegSet* schedule(_RegSet *prev) {
   //save the context pointer
   current->tf = prev;
-Log("s");
+
   //always select pcb[0] as the new process
   current = &pcb[0];
+  current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
 
   //TODO: switch to the new address space,
   //then return the new context
