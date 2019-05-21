@@ -32,8 +32,6 @@ _RegSet* schedule(_RegSet *prev) {
   current = &pcb[0];
   count++;
 
-  //current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
-
   //TODO: switch to the new address space,
   //then return the new context
   _switch(&current->as);
