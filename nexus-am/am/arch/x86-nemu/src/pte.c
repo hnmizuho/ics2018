@@ -66,29 +66,20 @@ void _switch(_Protect *p) {
 }
 
 void _map(_Protect *p, void *va, void *pa) {
-//printf("va: 0x%-8x pa: 0x%-8x\n", (uintptr_t)va, (uintptr_t)pa);
-	int pde_index = PDX(va);
-	//printf("pde_index: %d\n", pde_index);
-	int pte_index = PTX(va);
-	//printf("pte_idex: %d\n", pte_index);
-	PDE * updir = (PDE *)(p->ptr);
-	PTE * uptab;
-	if ((updir[pde_index] & 0x1) == 0){
-		uptab = (PTE *)(void *)(palloc_f());
-		//printf("uptab: 0x%-8x\n", (uintptr_t)uptab);
-		updir[pde_index] = (uintptr_t)uptab | PTE_P;
-		//printf("updir[%d] = 0x%-8x\n", pde_index, (uintptr_t)(updir[pde_index]));
-	} else {
-		uptab = (PTE *)(void *)((uintptr_t)updir[pde_index] & 0xfffff000);
-		//printf("uptab: 0x%-8x\n", (uintptr_t)uptab);
-		//printf("updir[%d] = 0x%-8x\n", pde_index, (uintptr_t)(updir[pde_index]));
-	}
+	PDE *pde, *pgdir = p->ptr;
+	PTE *pgtab;
 
-	PTE pte = ((uintptr_t)pa & 0xfffff000) | PTE_P;
-	//printf("pte: 0x%-8x\n", pte);
-	uptab[pte_index] = pte;
-	//printf("uptab[%d] = 0x%-8x\n", pte_index-1, (uintptr_t)(uptab[pte_index-1]));
-	//printf("uptab[%d] = 0x%-8x\n", pte_index, (uintptr_t)(uptab[pte_index]));
+    pde = &pgdir[PDX(va)];
+	if (*pde & PTE_P) {
+		pgtab = (PTE *)PTE_ADDR(*pde);
+	} else {
+		pgtab = (PTE *)palloc_f();
+		for (int i = 0; i < NR_PTE; i ++) {
+		    pgtab[i] = 0;
+		}
+		*pde = PTE_ADDR(pgtab) | PTE_P;
+	}
+	pgtab[PTX(va)] = PTE_ADDR(pa) | PTE_P;
 }
 
 void _unmap(_Protect *p, void *va) {

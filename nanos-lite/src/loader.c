@@ -20,7 +20,7 @@ uintptr_t loader(_Protect *as, const char *filename) {
   return (uintptr_t)DEFAULT_ENTRY;*/
 
   int fd = fs_open(filename, 0, 0);
-  int bytes = fs_filesz(fd);
+  int bytes = fs_filesz(fd); //出错在之前为size_t
 
   Log("Load [%d] %s with size: %d", fd, filename, bytes);
 
