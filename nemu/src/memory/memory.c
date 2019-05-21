@@ -58,9 +58,19 @@ paddr_t page_translate(vaddr_t addr, bool w1r0) {
 }
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
+ paddr_t paddr;
   if ((((addr) + (len) - 1) & ~PAGE_MASK) != ((addr) & ~PAGE_MASK)) {
 	//data cross the page boundary
-	assert(0);
+	    union {
+			uint8_t bytes[4];
+			uint32_t dword;
+		  } data = {0};
+		for (int i = 0; i < len; i++) {
+		    paddr = page_translate(addr + i, false);
+		    data.bytes[i] = (uint8_t)paddr_read(paddr, 1);
+		}
+	  return data.dword;
+	//assert(0);
   } else {
     paddr_t paddr = page_translate(addr, false);
     return paddr_read(paddr, len);
@@ -68,9 +78,16 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 }
 
 void vaddr_write(vaddr_t addr, int len, uint32_t data) {
+ paddr_t paddr;
   if ((((addr) + (len) - 1) & ~PAGE_MASK) != ((addr) & ~PAGE_MASK)) {
 	//data cross the page boundary
-	assert(0);
+	  for (int i = 0; i < len; i++) {
+	     paddr = page_translate(addr, true);
+	      paddr_write(paddr, 1, data);
+	      data >>= 8;
+	      addr++;
+	    }
+	//assert(0);
   } else {
     paddr_t paddr = page_translate(addr, true);
     paddr_write(paddr, len, data);
