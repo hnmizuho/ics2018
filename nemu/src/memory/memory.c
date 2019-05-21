@@ -76,11 +76,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 void vaddr_write(vaddr_t addr, int len, uint32_t data) {
   if ((((addr) + (len) - 1) & ~PAGE_MASK) != ((addr) & ~PAGE_MASK)) {
 	//data cross the page boundary
-	for(int i=0;i<len;i++){ //len 最大为4
-		paddr_t paddr = page_translate(addr + i,true);
-		paddr_write(paddr,1,data);
-		data >>= 8;
-	}
+
 	//assert(0);
   } else {
     paddr_t paddr = page_translate(addr, true);
