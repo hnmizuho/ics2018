@@ -7,7 +7,7 @@
 #define PAGE_SIZE					4096
 #define NR_PDE						1024
 #define NR_PTE						1024
-#define PAGE_MASK					(4096 - 1)
+#define PAGE_MASK					(4096 - 1) //0xfff
 #define PT_SIZE						((NR_PTE) * (PAGE_SIZE))
 
 /* the Control Register 0 */
