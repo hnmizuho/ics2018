@@ -31,10 +31,7 @@ _RegSet* schedule(_RegSet *prev) {
   //always select pcb[0] as the new process
   current = &pcb[0];
   count++;
-  if(count == 50){
-  	count = 0;
-  	current = &pcb[1];
-  }
+
   //current = (current == &pcb[0] ? &pcb[1] : &pcb[0]);
 
   //TODO: switch to the new address space,
