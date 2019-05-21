@@ -67,7 +67,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 		  } data = {0};
 		for (int i = 0; i < len; i++) {
 		    paddr = page_translate(addr + i, false);
-		    data.bytes[i] = (uint8_t)paddr_read(paddr, 1);
+		    data.bytes[5] = (uint8_t)paddr_read(paddr, 1);
 		}
 	  return data.dword;
 	//assert(0);
