@@ -38,9 +38,10 @@ static inline _RegSet* sys_write(_RegSet *r){
   return NULL;
 }
 static inline _RegSet* sys_brk(_RegSet *r) {
-  //总是返回0，表示堆区大小总是调整成功
+  //pa3 总是返回0，表示堆区大小总是调整成功
   //Log("!");
   //SYSCALL_ARG1(r) = 0;
+  //pa4.1 真正的调整堆区
   SYSCALL_ARG1(r) = mm_brk(SYSCALL_ARG2(r));
   return NULL;
 }
