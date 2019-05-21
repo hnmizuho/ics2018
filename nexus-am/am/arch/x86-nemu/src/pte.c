@@ -64,10 +64,10 @@ void _release(_Protect *p) {
 void _switch(_Protect *p) {
   set_cr3(p->ptr);
 }
-#define K4(va) (((uint32_t)(va)+0xfff) & ~0xfff)
+
 void _map(_Protect *p, void *va, void *pa) {
 	PDE *pgdir = p->ptr;
-	PDE *pde = &pgdir[PDX(K4(va))];
+	PDE *pde = &pgdir[PDX(va)];
 	PTE *pgtab;
 	if (*pde & PTE_P) { //present
 		pgtab = (PTE *)PTE_ADDR(*pde);
