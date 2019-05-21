@@ -50,12 +50,12 @@ paddr_t page_translate(vaddr_t addr, bool w1r0) {
     PTE pte, *pgtab;
     // 只有进入保护模式并开启分页机制后才会进行页级地址转换。。。。。。。。。。
     if (cpu.cr0.protect_enable && cpu.cr0.paging) {
-	    pgdir = (PDE *)(cpu.cr3.page_directory_base << 12); //cr3存放20位的基址作为页目录入口
+	    pgdir = (PDE *)(PTE_ADDR(cpu.cr3.val)); //cr3存放20位的基址作为页目录入口
 	    pde.val = paddr_read((paddr_t)&pgdir[PDX(addr)], 4);
 	    assert(pde.present);
 	    pde.accessed = 1;
 
-	    pgtab = (PTE *)(intptr_t)(pde.page_frame << 12);  //页目录存放20位的基址作为页表入口
+	    pgtab = (PTE *)(pde.page_frame << 12);  //页目录存放20位的基址作为页表入口
 	    pte.val = paddr_read((paddr_t)&pgtab[PTX(addr)], 4);
 	    assert(pte.present);
 	    pte.accessed = 1;
