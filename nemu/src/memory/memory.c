@@ -43,6 +43,7 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
 #define PDX(va)     (((uint32_t)(va) >> 22) & 0x3ff)
 #define PTX(va)     (((uint32_t)(va) >> 12) & 0x3ff)
 #define OFF(va)     ((uint32_t)(va) & 0xfff)
+#define PTE_ADDR(pte)   ((uint32_t)(pte) & ~0xfff)
 paddr_t page_translate(vaddr_t addr, bool w1r0) {
     //aka page_walk
     PDE pde, *pgdir;
