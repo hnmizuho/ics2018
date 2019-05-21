@@ -25,8 +25,7 @@ void load_prog(const char *filename) {
 }
 int priority = 0;
 _RegSet* schedule(_RegSet *prev) {
-  //return NULL;
-
+/*
   //save the context pointer
   current->tf = prev;
   priority++;
@@ -42,9 +41,10 @@ _RegSet* schedule(_RegSet *prev) {
   //then return the new context
   _switch(&current->as);
   return current->tf;
+*/
 
-/*
   current->tf = prev;
   current = &pcb[0];
-  return current->tf;*/
+  _switch(&current->as);
+  return current->tf;
 }
