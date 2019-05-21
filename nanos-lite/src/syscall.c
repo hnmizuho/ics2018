@@ -7,6 +7,8 @@ ssize_t fs_write(int fd, const void *buf, size_t len);
 off_t fs_lseek(int fd, off_t offset, int whence);
 int fs_close(int fd);
 
+extern int mm_brk(uint32_t new_brk);
+
 static inline _RegSet* sys_none(_RegSet *r){
   SYSCALL_ARG1(r) = 1; //约定系统调用返回值存于此，即eax
   return NULL;
@@ -38,8 +40,8 @@ static inline _RegSet* sys_write(_RegSet *r){
 static inline _RegSet* sys_brk(_RegSet *r) {
   //总是返回0，表示堆区大小总是调整成功
   //Log("!");
-  SYSCALL_ARG1(r) = 0;
-  //SYSCALL_ARG1(r) = mm_brk(SYSCALL_ARG2(r));
+  //SYSCALL_ARG1(r) = 0;
+  SYSCALL_ARG1(r) = mm_brk(SYSCALL_ARG2(r));
   return NULL;
 }
 static inline _RegSet* sys_open(_RegSet *r) {
