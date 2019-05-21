@@ -83,5 +83,30 @@ void _unmap(_Protect *p, void *va) {
 }
 
 _RegSet *_umake(_Protect *p, _Area ustack, _Area kstack, void *entry, char *const argv[], char *const envp[]) {
-  return NULL;
+//08048000 <_start>:
+// 8048000:   55                      push   %ebp
+// 8048001:   89 e5                   mov    %esp,%ebp
+// 8048003:   83 ec 0c                sub    $0xc,%esp 
+// 8048006:   ff 75 10                pushl  0x10(%ebp)
+// 8048009:   ff 75 0c                pushl  0xc(%ebp)
+// 804800c:   ff 75 08                pushl  0x8(%ebp)   
+// 804800f:   e8 60 00 00 00          call   8048074 <main> 
+
+  uint32_t *ptr = ustack.end;
+  //printf("ptr 0x%-8x\n", ptr);
+  //printf("end 0x%-8x\n", ustack.end);
+  //the stack frame of _start
+  for (int i = 0; i < 8; i++) 
+	*ptr-- = 0x0; 
+
+  *ptr-- = 0x202; //eflags
+  *ptr-- = 0x8; //cs
+  *ptr-- = (uint32_t)entry;
+  *ptr-- = 0x0; //error code
+  *ptr-- = 0x81; //irq id
+  for (int i = 0; i < 8; i++)
+	*ptr-- = 0x0;
+  ptr++;
+  //printf("regset 0x%-8x\n", ptr);
+  return (_RegSet *)ptr;
 }
