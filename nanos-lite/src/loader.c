@@ -34,6 +34,6 @@ uintptr_t loader(_Protect *as, const char *filename) {
   	bytes -= PGSIZE;
   }
   //fs_read(fd,DEFAULT_ENTRY,bytes);
-  //fs_close(fd);
+  fs_close(fd);
   return (uintptr_t)DEFAULT_ENTRY;
 }
