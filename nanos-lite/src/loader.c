@@ -16,7 +16,7 @@ uintptr_t loader(_Protect *as, const char *filename) {
   void * buff = NULL;
   ramdisk_read(buff,0,size); 
   memcpy(DEFAULT_ENTRY,buff,size); //之前误用memset
-  //后来才知道，ramdisk_read已经memcpy了，上一句无用功
+  //后来才想起来，ramdisk_read已经memcpy了，上一句无用功
   return (uintptr_t)DEFAULT_ENTRY;*/
 
   int fd = fs_open(filename, 0, 0);
@@ -26,9 +26,10 @@ uintptr_t loader(_Protect *as, const char *filename) {
 
   void *pa,*va = DEFAULT_ENTRY;
   while(bytes>0){
-  	pa = new_page();
-  	_map(as, va, pa);
-  	fs_read(fd, pa, PGSIZE);  
+  	pa = new_page(); //申请空闲物理页
+  	_map(as, va, pa);//该物理页映射到用户程序虚拟地址空间
+  	fs_read(fd, pa, PGSIZE);  //读一页文件到该物理页
+
   	va += PGSIZE;
   	bytes -= PGSIZE;
   }
