@@ -62,7 +62,7 @@ paddr_t page_translate(vaddr_t addr, bool w1r0) {
 	    pte.dirty = w1r0 ? 1 : pte.dirty; //写则置脏位
 
 	    //pte高20位和线性地址低12位拼接成真实地址
-	    return (pte.page_frame << 12) | OFF(addr); 
+	    return PTE_ADDR(pte.val) | OFF(addr); 
 	}
 
     return addr;
