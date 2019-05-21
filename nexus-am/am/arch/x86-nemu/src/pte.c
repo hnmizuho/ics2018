@@ -50,9 +50,7 @@ void _protect(_Protect *p) {
   PDE *updir = (PDE*)(palloc_f());
   p->ptr = updir;
   // map kernel space
-  for (int i = 0; i < NR_PDE; i ++) {
-    updir[i] = kpdirs[i];
-  }
+
 
   p->area.start = (void*)0x8000000;
   p->area.end = (void*)0xc0000000;
@@ -74,7 +72,6 @@ void _map(_Protect *p, void *va, void *pa) {
 	} else {
 		//映射过程中发现需要申请新的页表
 		pgtab = (PTE *)palloc_f();
-
 		*pde = PTE_ADDR(pgtab) | PTE_P;
 	}
 	pgtab[PTX(va)] = PTE_ADDR(pa) | PTE_P;
