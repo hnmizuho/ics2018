@@ -67,7 +67,7 @@ void _switch(_Protect *p) {
 
 void _map(_Protect *p, void *va, void *pa) {
 	PDE *pgdir = p->ptr;
-	PDE *pde = &pgdir[PDX((va+0xfff))];
+	PDE *pde = &pgdir[PDX(va)];
 	PTE *pgtab;
 	if (*pde & PTE_P) { //present
 		pgtab = (PTE *)PTE_ADDR(*pde);
