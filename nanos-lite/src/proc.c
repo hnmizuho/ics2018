@@ -13,9 +13,9 @@ void load_prog(const char *filename) {
   _protect(&pcb[i].as);
   uintptr_t entry = loader(&pcb[i].as, filename);
   // TODO: remove the following three lines after you have implemented _umake()
-  _switch(&pcb[i].as);
-  current = &pcb[i];
-  ((void (*)(void))entry)();
+  //_switch(&pcb[i].as);
+  //current = &pcb[i];
+  //((void (*)(void))entry)();
 
   _Area stack;
   stack.start = pcb[i].stack;
