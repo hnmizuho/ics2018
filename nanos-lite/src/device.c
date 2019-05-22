@@ -48,7 +48,7 @@ void fb_write(const void *buf, off_t offset, size_t len) {
 
 void init_device() {
   _ioe_init();
-
+Log("haha2");
   // TODO: print the string to array `dispinfo` with the format
   // described in the Navy-apps convention
   sprintf(dispinfo,"WIDTH:%d\nHEIGHT:%d\n",_screen.width,_screen.height);
