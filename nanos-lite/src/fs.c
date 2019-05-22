@@ -41,6 +41,7 @@ extern char dispinfo[128];
 int fs_open(const char *pathname, int flags, int mode) {
 	//可读写所有文件，故忽略flags mode
 	Log("Pathname: %s", pathname);
+	//Log("dispinfo: %s", dispinfo);
 	int i;
 	for (i = 0; i < NR_FILES; i++) {
 		//printf("file name: %s\n", file_table[i].name);
