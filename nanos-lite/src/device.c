@@ -23,7 +23,7 @@ size_t events_read(void *buf, size_t len) {
 	}
 	else {
 		sprintf(buf, "%s %s\n", down ? "kd" : "ku", keyname[key]);
-		if(key == 13 && down) { //F12
+		if(key == 13 && down) { //F12 DOWN
 			current_game = (current_game == 0 ? 1 : 0);
 		}
 		Log("Get key: %d %s %s\n", key, keyname[key], down ? "down" : "up");
@@ -34,6 +34,7 @@ size_t events_read(void *buf, size_t len) {
 static char dispinfo[128] __attribute__((used));
 
 void dispinfo_read(void *buf, off_t offset, size_t len) {
+Log("s");
 	memcpy(buf,dispinfo+offset,len);
 }
 
