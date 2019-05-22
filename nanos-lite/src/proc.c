@@ -25,6 +25,7 @@ void load_prog(const char *filename) {
 }
 
 int count = 0;
+extern int current_game;
 _RegSet* schedule(_RegSet *prev) {
   //save the context pointer
   current->tf = prev;

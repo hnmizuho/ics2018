@@ -8,6 +8,7 @@ static const char *keyname[256] __attribute__((used)) = {
   _KEYS(NAME)
 };
 
+int current_game = 0;
 size_t events_read(void *buf, size_t len) {
   //return 0;
 	int key = _read_key();
@@ -22,6 +23,7 @@ size_t events_read(void *buf, size_t len) {
 	}
 	else {
 		sprintf(buf, "%s %s\n", down ? "kd" : "ku", keyname[key]);
+		if(key == 13) //F12
 		Log("Get key: %d %s %s\n", key, keyname[key], down ? "down" : "up");
 	}
 	return strlen(buf);//xxx strlen(buf)-1
