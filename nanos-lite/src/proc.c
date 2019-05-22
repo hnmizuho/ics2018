@@ -30,7 +30,7 @@ _RegSet* schedule(_RegSet *prev) {
   //save the context pointer
   current->tf = prev;
 
-  current = (current_game == 0 ? &pcb[0] : &pcb[2]);
+  current = (current_game == 0 ? &pcb[2] : &pcb[0]);
   count++;
   if(count == 64){
   	count = 0;
