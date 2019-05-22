@@ -35,7 +35,7 @@ int main() {
 
     load_prog("/bin/hello");
     load_prog("/bin/hello");
-    load_prog("/bin/hello");
+    //load_prog("/bin/hello");
 
   _trap();
 
