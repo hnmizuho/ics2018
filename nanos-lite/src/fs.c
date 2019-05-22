@@ -47,6 +47,7 @@ int fs_open(const char *pathname, int flags, int mode) {
 		if (strcmp(file_table[i].name, pathname) == 0) {
 			return i;
 		}
+	Log("fuck: %d", i);
 	}
 	assert(0);
 	return -1;
