@@ -21,14 +21,14 @@ FLOAT f2F(float a) {
    * performing arithmetic operations on it directly?
    */
   int tmp = a*0x10000;
-  return a>0 ? tmp : (1-tmp);
+  return a>0 ? tmp : (-tmp);
 }
 
 FLOAT Fabs(FLOAT a) {
   if(a&0x80000000 == 0)
     return a;
   else
-    return 1-a;
+    return -a;
 }
 
 /* Functions below are already implemented */

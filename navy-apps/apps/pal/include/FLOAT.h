@@ -9,12 +9,12 @@ static inline int F2int(FLOAT a) {
     if(a&0x80000000 == 0)
         return a/0x10000;
     else
-        return (1-a)/0x10000;
+        return (-a)/0x10000;
 }
 
 static inline FLOAT int2F(int a) {
     int tmp = a*0x10000;
-    return a>0?tmp:(1-tmp);
+    return a>0?tmp:(-tmp);
 }
 
 static inline FLOAT F_mul_int(FLOAT a, int b) {
