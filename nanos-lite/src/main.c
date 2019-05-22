@@ -34,7 +34,7 @@ int main() {
   //((void (*)(void))entry)();
 
   //load_prog("/bin/pal");
-        load_prog("/bin/litenes");
+        load_prog("/bin/videotest");
     load_prog("/bin/hello");
 
 
