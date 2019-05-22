@@ -38,21 +38,9 @@ void dispinfo_read(void *buf, off_t offset, size_t len) {
 }
 
 void fb_write(const void *buf, off_t offset, size_t len) {
-  offset /= 4;
-  int y = offset / _screen.width;	
-  int x = offset - _screen.width * y;
-  len /= 4; 
-  int lenA = len > _screen.width - x ? _screen.width - x : len;
-  int lenB = len - lenA > 0 ? ( (len - lenA) / _screen.width > 1 ? (len - lenA) / _screen.width * _screen.width : 0 ) : 0;
-  int lenC = len - lenA - lenB;
-
-  //Log("fb_write x:%d y:%d len:%d lenA:%d lenB:%d lenC:%d\n", x, y, len, lenA, lenB, lenC);
-
-  _draw_rect((uint32_t *)buf, x, y, lenA, 1);
-  if (lenB)
-	_draw_rect(((uint32_t *)buf) + lenA, 0, y + 1, _screen.width, lenB / _screen.width);
-  if (lenC)
-	_draw_rect(((uint32_t *)buf) + lenA + lenB, 0, y + lenB / _screen.width + 1, lenC, 1);
+	int row = (offset/4)/_screen.width;
+	int col = (offset/4)%_screen.width;
+	_draw_rect(buf,col,row,len/4,1);
 }
 
 void init_device() {
