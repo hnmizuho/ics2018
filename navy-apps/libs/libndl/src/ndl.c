@@ -128,7 +128,6 @@ int NDL_WaitEvent(NDL_Event *event) {
 static void get_display_info() {
   FILE *dispinfo = fopen("/proc/dispinfo", "r");
   assert(dispinfo);
-  printf("s");
   screen_w = screen_h = 0;
   char buf[128], key[128], value[128], *delim;
   while (fgets(buf, 128, dispinfo)) {
@@ -139,6 +138,7 @@ static void get_display_info() {
     if (strcmp(key, "HEIGHT") == 0) sscanf(value, "%d", &screen_h);
   }
   fclose(dispinfo);
+  printf("---------------------------------");
   assert(screen_w > 0 && screen_h > 0);
 }
 
