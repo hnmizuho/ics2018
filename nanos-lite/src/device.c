@@ -8,6 +8,8 @@ static const char *keyname[256] __attribute__((used)) = {
   _KEYS(NAME)
 };
 
+static char dispinfo[128] __attribute__((used));
+
 int current_game = 0;
 size_t events_read(void *buf, size_t len) {
   //return 0;
@@ -25,13 +27,12 @@ size_t events_read(void *buf, size_t len) {
 		sprintf(buf, "%s %s\n", down ? "kd" : "ku", keyname[key]);
 		if(key == 13 && down) { //F12 DOWN
 			current_game = (current_game == 0 ? 1 : 0);
+			sprintf(dispinfo,"WIDTH:%d\nHEIGHT:%d\n",_screen.width,_screen.height);
 		}
 		Log("Get key: %d %s %s\n", key, keyname[key], down ? "down" : "up");
 	}
 	return strlen(buf);//xxx strlen(buf)-1
 }
-
-static char dispinfo[128] __attribute__((used));
 
 void dispinfo_read(void *buf, off_t offset, size_t len) {
 	memcpy(buf,dispinfo+offset,len);
@@ -40,8 +41,6 @@ void dispinfo_read(void *buf, off_t offset, size_t len) {
 void fb_write(const void *buf, off_t offset, size_t len) {
 	int row = (offset/4)/_screen.width;
 	int col = (offset/4)%_screen.width;
-	void *tmp = NULL;
-	_draw_rect(tmp,col,row,len/4,1);
 	_draw_rect(buf,col,row,len/4,1);
 }
 
