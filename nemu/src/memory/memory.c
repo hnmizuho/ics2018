@@ -57,7 +57,7 @@ paddr_t page_translate(vaddr_t addr, bool w1r0) {
 
 	    pgtab = (PTE *)(PTE_ADDR(pde.val));  //页目录存放20位的基址作为页表入口
 	    pte.val = paddr_read((paddr_t)&pgtab[PTX(addr)], 4);
-	    assert(pte.present);
+	    //assert(pte.present);
 	    pte.accessed = 1;
 	    pte.dirty = w1r0 ? 1 : pte.dirty; //写则置脏位
 
