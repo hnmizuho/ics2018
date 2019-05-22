@@ -50,7 +50,6 @@ static inline _RegSet* sys_open(_RegSet *r) {
   int flags = (int)SYSCALL_ARG3(r);
   int mode = (int)SYSCALL_ARG4(r);
   SYSCALL_ARG1(r) = fs_open(pathname,flags,mode);
-Log("s");
   return NULL;
 }
 static inline _RegSet* sys_read(_RegSet *r) {
