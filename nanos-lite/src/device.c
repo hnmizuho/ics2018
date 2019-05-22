@@ -27,7 +27,6 @@ size_t events_read(void *buf, size_t len) {
 		sprintf(buf, "%s %s\n", down ? "kd" : "ku", keyname[key]);
 		if(key == 13 && down) { //F12 DOWN
 			current_game = (current_game == 0 ? 1 : 0);
-			sprintf(dispinfo,"WIDTH:%d\nHEIGHT:%d\n",_screen.width,_screen.height);
 		}
 		Log("Get key: %d %s %s\n", key, keyname[key], down ? "down" : "up");
 	}
