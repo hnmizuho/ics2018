@@ -40,6 +40,7 @@ void dispinfo_read(void *buf, off_t offset, size_t len) {
 }
 
 void fb_write(const void *buf, off_t offset, size_t len) {
+	Log("haha2");
 	int row = (offset/4)/_screen.width;
 	int col = (offset/4)%_screen.width;
 	_draw_rect(buf,col,row,len/4,1);
