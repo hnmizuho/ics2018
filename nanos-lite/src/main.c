@@ -33,8 +33,8 @@ int main() {
   //uint32_t entry = loader(NULL,"/bin/pal");
   //((void (*)(void))entry)();
 
-  //load_prog("/bin/pal");
-        load_prog("/bin/videotest");
+    load_prog("/bin/pal");
+    load_prog("/bin/videotest");
     load_prog("/bin/hello");
 
 
