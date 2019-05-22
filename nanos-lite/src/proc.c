@@ -29,7 +29,7 @@ extern int current_game;
 _RegSet* schedule(_RegSet *prev) {
   //save the context pointer
   current->tf = prev;
-
+  Log("ss%dss\n",current_game);
   current = (current_game == 0 ? &pcb[0] : &pcb[2]);
   count++;
   if(count == 64){
