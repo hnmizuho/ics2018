@@ -20,8 +20,7 @@ FLOAT f2F(float a) {
    * stack. How do you retrieve it to another variable without
    * performing arithmetic operations on it directly?
    */
-  int tmp = a*0x10000;
-  return a>0 ? tmp : (-tmp);
+  return a>0 ? a*0x10000: -((-a)*0x10000);
 }
 
 FLOAT Fabs(FLOAT a) {
