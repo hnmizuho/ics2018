@@ -49,5 +49,5 @@ void init_device() {
   _ioe_init();
   // TODO: print the string to array `dispinfo` with the format
   // described in the Navy-apps convention
-  sprintf(dispinfo,"WIDTH:%d\nHEIGHT:%d\n",40,30);
+  sprintf(dispinfo,"WIDTH:%d\nHEIGHT:%d\n",400,300);
 }
