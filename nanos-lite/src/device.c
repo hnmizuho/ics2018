@@ -23,7 +23,7 @@ size_t events_read(void *buf, size_t len) {
 	}
 	else {
 		sprintf(buf, "%s %s\n", down ? "kd" : "ku", keyname[key]);
-		if(key == 13) { //F12
+		if(key == 13 && down) { //F12
 			current_game = (current_game == 0 ? 1 : 0);
 		}
 		Log("Get key: %d %s %s\n", key, keyname[key], down ? "down" : "up");
