@@ -61,19 +61,22 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
 		case FD_STDIN:
 			return 0;
 		case FD_EVENTS:
+			if (file_table[fd].open_offset + len > fs_size) //超出部分舍弃
+				len = fs_size - file_table[fd].open_offset;
 			len = events_read((void *)buf, len);
 			break;
 		case FD_DISPINFO:
-			if (file_table[fd].open_offset >= fs_size)
-				return 0;
-
+			//if (file_table[fd].open_offset >= fs_size)
+				//return 0;
+			if (file_table[fd].open_offset + len > fs_size) //超出部分舍弃
+				len = fs_size - file_table[fd].open_offset;
 			dispinfo_read(buf, file_table[fd].open_offset, len);
 			file_table[fd].open_offset += len;	
 			break;
 		default:
 			//偏移量不可以超过文件边界
-			if(file_table[fd].open_offset >= fs_size) //file_table[fd].open_offset == fs_size ???
-				return 0;
+			//if(file_table[fd].open_offset >= fs_size) //实际上不会出现这情况
+				//return 0;
 			if(file_table[fd].open_offset + len > fs_size)
 				len = fs_size - file_table[fd].open_offset;
 			ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, len);
@@ -102,8 +105,8 @@ ssize_t fs_write(int fd, const void *buf, size_t len) {
 			break;
 		default:
 			// write to ramdisk
-			if(file_table[fd].open_offset >= fs_size)
-				return 0;	
+			//if(file_table[fd].open_offset >= fs_size)
+				//return 0;	
 			if(file_table[fd].open_offset + len > fs_size)
 				len = fs_size - file_table[fd].open_offset;
 			// 对文件的真正读写
