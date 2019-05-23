@@ -64,10 +64,10 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
 			len = events_read((void *)buf, len);
 			break;
 		case FD_DISPINFO:
-			if (file_table[fd].open_offset >= file_table[fd].size) // == ??
+			if (file_table[fd].open_offset >= fs_size) // == ??
 				return 0;
-			if (file_table[fd].open_offset + len > file_table[fd].size) //超出部分舍弃
-				len = file_table[fd].size - file_table[fd].open_offset;
+			if (file_table[fd].open_offset + len > fs_size) //超出部分舍弃
+				len = fs_size - file_table[fd].open_offset;
 			dispinfo_read(buf, file_table[fd].open_offset, len);
 			file_table[fd].open_offset += len;	
 			break;
