@@ -61,8 +61,6 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
 		case FD_STDIN:
 			return 0;
 		case FD_EVENTS:
-			if (file_table[fd].open_offset >= fs_size)
-				return 0;
 			len = events_read((void *)buf, len);
 			break;
 		case FD_DISPINFO:
