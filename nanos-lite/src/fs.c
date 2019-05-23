@@ -54,7 +54,9 @@ int fs_open(const char *pathname, int flags, int mode) {
 
 ssize_t fs_read(int fd, void *buf, size_t len) {
 	ssize_t fs_size = fs_filesz(fd);
-	if (file_table[fd].open_offset + len > fs_size) //超出部分舍弃
+	//if(file_table[fd].open_offset >= fs_size) //实际上不会出现这情况
+		//return 0;
+	if (file_table[fd].open_offset + len > fs_size) //偏移量不可以超过文件边界 超出部分舍弃
 		len = fs_size - file_table[fd].open_offset;
 	switch(fd) {
 		case FD_STDOUT:
@@ -65,15 +67,10 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
 			len = events_read((void *)buf, len);
 			break;
 		case FD_DISPINFO:
-			//if (file_table[fd].open_offset >= fs_size)
-				//return 0;
 			dispinfo_read(buf, file_table[fd].open_offset, len);
 			file_table[fd].open_offset += len;	
 			break;
 		default:
-			//偏移量不可以超过文件边界
-			//if(file_table[fd].open_offset >= fs_size) //实际上不会出现这情况
-				//return 0;
 			ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, len);
 			file_table[fd].open_offset += len;
 			break;
