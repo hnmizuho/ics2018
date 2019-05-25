@@ -1,9 +1,11 @@
 # ICS2017 Programming Assignment
 
 这是「南开大学」2019综合课程设计2-1版本的PA
+
 Completed:PA0-PA4
 By HNMIZUHO
-使用方法：想流畅玩仙剑的话把navy-apps下的Makefile.check中的ISA改为native然后nanos-lite下make update、make run即可
+
+食用方法：想流畅玩仙剑的话把navy-apps下的Makefile.check中的ISA改为native然后nanos-lite下make update、make run即可
 
 This project is the programming assignment of the class ICS(Introduction to Computer System) in Department of Computer Science and Technology, Nanjing University.
 
