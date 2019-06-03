@@ -29,7 +29,7 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"0x[0-9A-Fa-f][0-9A-Fa-f]*", TK_HEX},
   {"0|[1-9][0-9]*", TK_DEC},
-  {"\\$(eax|ecx|edx|ebx|esp|ebp|esi|edi|ax|cx|dx|bx|sp|bp|si|di|al|cl|dl|bl|ah|ch|dh|bh)", TK_REG},
+  {"\\$(eax|ecx|edx|ebx|esp|ebp|esi|edi|eip|ax|cx|dx|bx|sp|bp|si|di|al|cl|dl|bl|ah|ch|dh|bh)", TK_REG},
 
   {"\\+", '+'},         // 使用单引号
   {"-", '-'},          
@@ -179,6 +179,8 @@ uint32_t eval(int p,int q){
                 if(!strcmp(tmp,regsw[i])){return cpu.gpr[i]._16;}
             for(int i=0;i<8;i++) 
                 if(!strcmp(tmp,regsb[i])){return cpu.gpr[i%4]._8[i/4];}
+	    char teip[3]="eip";
+	    if(strcmp(tmp,teip))return cpu.eip;
         }
         else assert(0);
         return res;
